@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303025728) do
+ActiveRecord::Schema.define(version: 20170303043738) do
+
+  create_table "roommates", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "roommate_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -21,6 +28,7 @@ ActiveRecord::Schema.define(version: 20170303025728) do
     t.datetime "remember_created_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
