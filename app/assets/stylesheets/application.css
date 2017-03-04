@@ -14,10 +14,8 @@
  *= require_self
  */
 
-#unfinished-item {
-  color: green
-}
 
 #finished-item {
-  color: red
+  color: red;
+  text-decoration: line-through;
 }

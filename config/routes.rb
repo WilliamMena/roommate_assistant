@@ -4,8 +4,16 @@ Rails.application.routes.draw do
 
   get '/home' => 'users#home'
   resources :users, only: [:index] do
-    resources :lists, only: [:new, :show]
+    resources :lists, only: [:new, :create, :show]
   end
+
+  # resources :grocery_items, only: [:create, :update]
+
+  # resources :grocery_items, only: [:buy, :unbuy]
+  
+  post '/grocery_items/:id/buy' => 'grocery_items#buy'
+  post '/grocery_items/:id/unbuy' => 'grocery_items#unbuy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

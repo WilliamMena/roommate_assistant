@@ -5,8 +5,10 @@
     <li>
       <% if g.bought %>
         <%= content_tag(:div, g.grocery.name, :id => "finished-item") %>
+        <%= link_to 'Un-buy', "/grocery_items/#{g.id}/unbuy", method: 'post' %>
       <% else %>
         <%= content_tag(:div, g.grocery.name, :id => "unfinished-item") %>
+        <%= link_to 'Buy', "/grocery_items/#{g.id}/buy", method: 'post' %>
       <% end %>
     </li>
   <% end %>
