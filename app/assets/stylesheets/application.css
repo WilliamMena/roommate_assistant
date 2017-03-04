@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+#unfinished-item {
+  color: green
+}
+
+#finished-item {
+  color: red
+}

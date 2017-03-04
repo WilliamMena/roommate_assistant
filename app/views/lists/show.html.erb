@@ -1,1 +1,13 @@
 <h1><%= @list.title %></h1>
+
+<ul>
+  <% @list.grocery_items.each do |g| %>
+    <li>
+      <% if g.bought %>
+        <%= content_tag(:div, g.grocery.name, :id => "finished-item") %>
+      <% else %>
+        <%= content_tag(:div, g.grocery.name, :id => "unfinished-item") %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
