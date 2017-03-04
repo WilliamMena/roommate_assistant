@@ -1,4 +1,4 @@
 class Grocery < ActiveRecord::Base
-  has_many :lists
-  has_many :users
+  has_many :shopping_lists
+  has_many :users, through: :shopping_lists
 end

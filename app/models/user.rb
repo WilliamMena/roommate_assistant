@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :inverse_mates, :through => :inverse_roommates, :source => :user
 
   has_many :shopping_lists
-  has_many :groceries, through: :shopping_lists
+  has_many :groceries, through: :shopping_lists, class_name: "Grocery"
 
 
   # user.roommates.build(roommate_id: user2.id)
