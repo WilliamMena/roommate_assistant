@@ -14,6 +14,9 @@ milk = Grocery.create(name: "Milk")
 eggs = Grocery.create(name: "Eggs")
 cheese = Grocery.create(name: "Cheese")
 
-ShoppingList.create(grocery_id: milk.id, user_id: william.id )
-ShoppingList.create(grocery_id: eggs.id, user_id: william.id )
-ShoppingList.create(grocery_id: cheese.id, user_id: rocio.id )
+list1 = List.create(title: "Shopping List, Jan 1", user_id: william.id)
+list2 = List.create(title: "Another Shopping List, Nov 22", user_id: rocio.id)
+
+GroceryItem.create(grocery_id: milk.id, list_id: list1.id )
+GroceryItem.create(grocery_id: eggs.id, list_id: list1.id )
+GroceryItem.create(grocery_id: cheese.id, list_id: list2.id )

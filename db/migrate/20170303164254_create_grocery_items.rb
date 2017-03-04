@@ -1,8 +1,8 @@
-class CreateShoppingLists < ActiveRecord::Migration
+class CreateGroceryItems < ActiveRecord::Migration
   def change
-    create_table :shopping_lists do |t|
+    create_table :grocery_items do |t|
+      t.integer :list_id
       t.integer :grocery_id
-      t.integer :user_id
       t.boolean :bought, default: false
 
       t.timestamps null: false
