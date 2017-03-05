@@ -4,10 +4,10 @@ Rails.application.routes.draw do
 
   get '/home' => 'users#home'
   resources :users, only: [:index] do
-    resources :lists, only: [:new, :show]
+    resources :lists, only: [:show]
   end
 
-  resources :lists, only: [:create, :update]
+  resources :lists, only: [:new, :edit, :create, :update]
 
   resources :grocery_items, only: [:create, :update]
 
