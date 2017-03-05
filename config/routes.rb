@@ -4,13 +4,15 @@ Rails.application.routes.draw do
 
   get '/home' => 'users#home'
   resources :users, only: [:index] do
-    resources :lists, only: [:new, :create, :show]
+    resources :lists, only: [:new, :show]
   end
 
-  # resources :grocery_items, only: [:create, :update]
+  resources :lists, only: [:create, :update]
+
+  resources :grocery_items, only: [:create, :update]
 
   # resources :grocery_items, only: [:buy, :unbuy]
-  
+
   post '/grocery_items/:id/buy' => 'grocery_items#buy'
   post '/grocery_items/:id/unbuy' => 'grocery_items#unbuy'
 

@@ -1,6 +1,15 @@
 <h1><%= @list.title %></h1>
 
+
+
 <ul>
+  <li>
+    <%= form_tag(grocery_items_path) do %>
+      <%= hidden_field_tag 'list_id', @list.id %>
+      <%= text_field_tag 'item', nil, placeholder: 'New Item...' %> <%= submit_tag 'New Item' %>
+    <% end %>
+  </li>
+
   <% @list.grocery_items.each do |g| %>
     <li>
       <% if g.bought %>
@@ -13,3 +22,4 @@
     </li>
   <% end %>
 </ul>
+
