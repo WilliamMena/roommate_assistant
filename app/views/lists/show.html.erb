@@ -13,10 +13,10 @@
   <% @list.grocery_items.each do |g| %>
     <li>
       <% if g.bought %>
-        <%= content_tag(:div, g.grocery.name, :id => "finished-item") %>
+        <%= content_tag(:div, g.item, :id => "finished-item") %>
         <%= link_to 'Un-buy', "/grocery_items/#{g.id}/unbuy", method: 'post' %>
       <% else %>
-        <%= content_tag(:div, g.grocery.name, :id => "unfinished-item") %>
+        <%= content_tag(:div, g.item, :id => "unfinished-item") %>
         <%= link_to 'Buy', "/grocery_items/#{g.id}/buy", method: 'post' %>
       <% end %>
     </li>

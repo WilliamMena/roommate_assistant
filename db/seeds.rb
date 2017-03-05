@@ -10,13 +10,12 @@ william = User.create(email: "william@test.com", password: "password", name: "Wi
 rocio = User.create(email: "rocio@test.com", password: "password", name: "Rocio")
 joshua = User.create(email: "joshua@test.com", password: "password", name: "Joshua")
 
-milk = Grocery.create(name: "Milk")
-eggs = Grocery.create(name: "Eggs")
-cheese = Grocery.create(name: "Cheese")
-
 list1 = List.create(title: "Shopping List, Jan 1", user_id: william.id)
+# list1.groceries.build(item: "Milk")
+# list1.groceries.build(item: "Eggs")
 list2 = List.create(title: "Another Shopping List, Nov 22", user_id: rocio.id)
+# list2.groceries.build(item: "Cheese")
 
-GroceryItem.create(grocery_id: milk.id, list_id: list1.id )
-GroceryItem.create(grocery_id: eggs.id, list_id: list1.id )
-GroceryItem.create(grocery_id: cheese.id, list_id: list2.id )
+GroceryItem.create(item: "Milk", list_id: list1.id )
+GroceryItem.create(item: "Eggs", list_id: list1.id )
+GroceryItem.create(item: "Cheese", list_id: list2.id )

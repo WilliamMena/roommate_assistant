@@ -1,9 +1,9 @@
 class GroceryItemsController < ApplicationController
 
   def create
-    grocery = Grocery.create(name: params[:item])
     list = List.find(params[:list_id])
-    list.groceries << grocery
+    list.grocery_items.build(item: params[:item])
+    list.save
     redirect_to user_list_path(list.user.id, list.id)
   end
 
