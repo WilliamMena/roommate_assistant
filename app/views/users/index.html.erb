@@ -1,0 +1,12 @@
+<h1>All Users</h1>
+
+
+<ul>
+<% @users.each do |u| %>
+  Name: <%= u.name %>
+  #link to follow
+  <br>
+  Email: <%= u.email %>
+  <br></br>
+<% end %>
+</ul>

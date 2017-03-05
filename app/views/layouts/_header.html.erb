@@ -1,8 +1,13 @@
-<% if signed_in? %>
-  <%= link_to 'Home', home_path %>
-  <%= link_to 'Sign out', destroy_user_session_path, method: 'delete' %>
-  <b><%= current_user.name %></b>
-<% else %>
-  <%= link_to 'Sign in', new_user_session_path %>
-  <%= link_to 'Sign up', new_user_registration_path %>
-<% end %>
+<div class="nav_bar">
+  <% if signed_in? %>
+    <%= link_to 'Home', home_path %>
+    <%= link_to 'Create a new shopping list', new_list_path %>
+    <%= link_to 'Roomates', users_path %>
+    <br>
+    <b><%= current_user.name %></b>
+    <%= link_to 'Sign out', destroy_user_session_path, method: 'delete' %>
+  <% else %>
+    <%= link_to 'Sign in', new_user_session_path %>
+    <%= link_to 'Sign up', new_user_registration_path %>
+  <% end %>
+</div>
