@@ -2,7 +2,11 @@
   <% if signed_in? %>
     <%= link_to 'Home', home_path %>
     <%= link_to 'Create a new shopping list', new_list_path %>
-    <%= link_to 'Roomates', users_path %>
+      <% if current_user.actual_roommates.empty? %>
+        <%= link_to 'All Users', users_path %>
+      <% else %>
+        <%= link_to 'Roommates', roommates_path %>
+      <% end %>
     <br>
     <b><%= current_user.name %></b>
     <%= link_to 'Sign out', destroy_user_session_path, method: 'delete' %>

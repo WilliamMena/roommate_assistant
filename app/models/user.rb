@@ -15,4 +15,25 @@ class User < ActiveRecord::Base
   # user.roommates.build(roommate_id: user2.id)
   # user.mates returns the user instances of each roommate
   # user.inverse_mates returns the hosts id. Have to figure out how to show all roommates
+
+
+  # Use the 'map' method to return the requested people
+
+  # create a method along the lines of 'actual_roommates' making each current roommate relationship the beginning stage of a "friend request"
+  # 'actual_roommates' could be a method that returns an array of your relationships where both people are following each other
+  # compare the methods roommates and inverse_mates to see if each roommate includes the first user and display the roommates who appear on both sides.
+
+  # debate on making anothe model/stable that holds the actual relationships but I feel like it might be unnecesary. 
+
+  # 'pending roommate requests' or 'pending_roommates' (who you haven't added) can be the requests who haven't been approved on both sides yet but mainly checking your 'inverse_roommates' method.
+
+  # 'then create kind of like the opposite for 'roommates' who haven't approved you yet.
+
+  # FOR ALL, if the user presses X (which should be a link next to the request), then the whole relationship will be deleted so it doesn't appear in any method. 
+
+  def actual_roommates
+    actual = []
+    actual = roommates.map {|r| r.roommate if inverse_mates.include?(r.roommate) == true }
+    actual.delete_if {|a| a == nil}
+  end
 end

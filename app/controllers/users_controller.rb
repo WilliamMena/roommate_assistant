@@ -6,4 +6,8 @@ class UsersController < ApplicationController
   def index
     @users = User.all
   end
+
+  def roommates
+    @users = current_user.actual_roommates
+  end
 end

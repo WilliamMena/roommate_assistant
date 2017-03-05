@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'sessions#welcome'
 
   get '/home' => 'users#home'
+  get '/roommates' => 'users#roommates'
+
   resources :users, only: [:index] do
     resources :lists, only: [:show]
   end
