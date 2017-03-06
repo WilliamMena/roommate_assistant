@@ -37,15 +37,21 @@ class User < ActiveRecord::Base
     actual.delete_if {|a| a == nil}
   end
 
-  def pending_roommates #roommates who are requesting you
+  # if I present the relationship instead of the user, I might be able to destroy it a lot easier.
+
+  def pending_roommates #roommates who are requesting you --- RETURNS THE USER, not the roommate relationship
     pending = []
     pending = inverse_mates.map {|r| r if !actual_roommates.include?(r)}
     pending.delete_if {|r| r == nil}
   end
 
-  def requested_roommates #roommates you're requesting but they haven't approved of yet
+  def requested_roommates #roommates you're requesting but they haven't approved of yet --- RETURNS THE USER, not the roommate relationship
     pending = []
-    pending = roommates.map {|r| r.roommate if !actual_roommates.include?(r.roommate)}
-    pending.delete_if {|r| r == nil}
+    pending = roommates.map {|r| r if !actual_roommates.include?(r.roommate)}
+    pending.delete_if {|r| r.roommate == nil}
   end
+
+  # def self.remove(user)
+  #   binding.pry
+  # end
 end

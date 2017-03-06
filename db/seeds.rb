@@ -10,14 +10,14 @@ william = User.create(email: "william@test.com", password: "password", name: "Wi
 rocio = User.create(email: "rocio@test.com", password: "password", name: "Rocio")
 joshua = User.create(email: "joshua@test.com", password: "password", name: "Joshua")
 
-william.roommates.build(roommate_id: rocio.id)
-rocio.roommates.build(roommate_id: william.id)
-
-william.roommates.build(roommate_id: joshua.id)
-
 # william = User.find_by_name("William")
 # rocio = User.find_by_name("Rocio")
 # joshua = User.find_by_name("Joshua")
+
+
+# william.roommates.build(roommate_id: rocio.id).save
+# rocio.roommates.build(roommate_id: william.id).save
+# william.roommates.build(roommate_id: joshua.id).save
 
 
 

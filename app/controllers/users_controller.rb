@@ -9,6 +9,11 @@ class UsersController < ApplicationController
   end
 
   def roommates
-    @users = current_user.actual_roommates
+    if !current_user.actual_roommates.empty?
+      @users = current_user.actual_roommates
+    else
+      redirect_to users_path
+    end
   end
+
 end
