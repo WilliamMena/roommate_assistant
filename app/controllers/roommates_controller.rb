@@ -1,5 +1,11 @@
 class RoommatesController < ApplicationController
 
+
+  def create
+    raise params.inspect
+    redirect_to users_path
+  end
+
   def destroy #destroy's the roommate relationship, then redirects to roommates page.
     # Need to prepare for when a user is not signed in and also for when the requested delete relationship isn't part of the users relationship
     roommate = User.find(params[:id])
@@ -9,6 +15,14 @@ class RoommatesController < ApplicationController
     else
       flash.alert = "This isn't your roommate"
       redirect_to root_path
+    end
+  end
+
+  def index
+    if !current_user.actual_roommates.empty?
+      @users = current_user.actual_roommates
+    else
+      redirect_to users_path
     end
   end
 

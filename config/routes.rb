@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'sessions#welcome'
 
   get '/home' => 'users#home'
-  get '/roommates' => 'users#roommates'
+  # get '/roommates' => 'users#roommates'
 
   resources :users, only: [:index] do
     resources :lists, only: [:show]
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post '/grocery_items/:id/buy' => 'grocery_items#buy'
   post '/grocery_items/:id/unbuy' => 'grocery_items#unbuy'
 
-  resources :roommates, only: [:destroy]
+  resources :roommates, only: [:index, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
