@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    # @users.delete_if {|a| (actual_roommates+current_user).include?(a)}
   end
 
   def roommates

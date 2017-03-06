@@ -24,3 +24,14 @@
   text-align: center;
 }
 
+.nav_bar a {
+  padding: 5px;
+}
+
+a:visited {
+  color: blue;
+}
+
+a:hover {
+  color: purple;
+}

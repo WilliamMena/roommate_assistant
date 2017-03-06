@@ -36,4 +36,16 @@ class User < ActiveRecord::Base
     actual = roommates.map {|r| r.roommate if inverse_mates.include?(r.roommate) == true }
     actual.delete_if {|a| a == nil}
   end
+
+  def pending_roommates #roommates who are requesting you
+    pending = []
+    pending = inverse_mates.map {|r| r if !actual_roommates.include?(r)}
+    pending.delete_if {|r| r == nil}
+  end
+
+  def requested_roommates #roommates you're requesting but they haven't approved of yet
+    pending = []
+    pending = roommates.map {|r| r.roommate if !actual_roommates.include?(r.roommate)}
+    pending.delete_if {|r| r == nil}
+  end
 end

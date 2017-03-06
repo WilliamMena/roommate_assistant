@@ -15,6 +15,12 @@ rocio.roommates.build(roommate_id: william.id)
 
 william.roommates.build(roommate_id: joshua.id)
 
+# william = User.find_by_name("William")
+# rocio = User.find_by_name("Rocio")
+# joshua = User.find_by_name("Joshua")
+
+
+
 list1 = List.create(title: "Shopping List, Jan 1", user_id: william.id)
 # list1.groceries.build(item: "Milk")
 # list1.groceries.build(item: "Eggs")
