@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.all.to_a
+    @users.delete_if {|u| u == current_user }
   end
 
 end

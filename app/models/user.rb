@@ -51,7 +51,4 @@ class User < ActiveRecord::Base
     pending.delete_if {|r| r.roommate == nil}
   end
 
-  # def self.remove(user)
-  #   binding.pry
-  # end
 end
