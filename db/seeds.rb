@@ -15,9 +15,9 @@ joshua = User.create(email: "joshua@test.com", password: "password", name: "Josh
 # joshua = User.find_by_name("Joshua")
 
 
-william.roommates.build(roommate_id: rocio.id).save
-rocio.roommates.build(roommate_id: william.id).save
-william.roommates.build(roommate_id: joshua.id).save
+# william.roommates.build(roommate_id: rocio.id).save
+# rocio.roommates.build(roommate_id: william.id).save
+# william.roommates.build(roommate_id: joshua.id).save
 
 
 

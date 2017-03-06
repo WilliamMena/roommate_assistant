@@ -8,8 +8,14 @@
   Email: <%= u.email %>
   <br>
   #link to add to your roommate
-  <%= link_to "Add Roommate", '/roommates', method: :post%>
+  <%= link_to "Add Roommate", roommates_path( :roommate_id => u.id), method: :post%>
   # might just need to create a form.
+
+    <%= form_tag '/roommates' do %>
+      <%= hidden_field_tag :roommate_id, "#{u.id}" %>
+      <%= submit_tag "Add Roommate" %>
+    <% end %>
+
   <br></br>
 <% end %>
 </ul>

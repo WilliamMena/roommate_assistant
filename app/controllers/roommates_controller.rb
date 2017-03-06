@@ -2,7 +2,7 @@ class RoommatesController < ApplicationController
 
 
   def create
-    raise params.inspect
+    current_user.roommates.create(roommate_id: params[:roommate_id])
     redirect_to users_path
   end
 
