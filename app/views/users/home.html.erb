@@ -3,10 +3,13 @@
 
 
 <h3>Your lists</h3>
-<% if !@lists.empty? %>
-  <% @lists.each do |l| %>
-    <%= link_to l.title, user_list_path(current_user.id, l.id)  %>
+<ul>
+  <% if !@lists.empty? %>
+    <% @lists.each do |l| %>
+      <%= link_to l.title, user_list_path(current_user.id, l.id)  %>
+      <br></br>
+    <% end %>
+  <% else %>
+    <p>No list's available at the moment. <%= link_to 'Create a List!', new_list_path %><!-- link_to creating a list --></p>
   <% end %>
-<% else %>
-  <p>No list's available at the moment. <%= link_to 'Create a List!', new_list_path %><!-- link_to creating a list --></p>
-<% end %>
+</ul>
