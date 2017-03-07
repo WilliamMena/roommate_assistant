@@ -5,8 +5,10 @@ class RoommatesController < ApplicationController
     current_user.roommates.find_or_create_by(roommate_id: params[:roommate_id])
     if current_user.actual_roommates.include?(User.find(params[:roommate_id]))
       redirect_to home_path
+      flash.message = "Successfully added roommate"
     else
       redirect_to users_path
+      flash.alert = "Requested Roommate"
     end
   end
 

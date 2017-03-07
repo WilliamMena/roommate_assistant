@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :lists, only: [:show]
   end
 
-  resources :lists, only: [:new, :edit, :create, :update]
+  resources :lists, only: [:new, :edit, :create, :update, :destroy]
 
   resources :grocery_items, only: [:create, :update]
 

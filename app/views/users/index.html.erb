@@ -9,9 +9,9 @@
   <br>
   
   <% if current_user.actual_roommates.include?(u) %>
-    <b>Roommate</b>
+    <sub><b>Roommate</b></sub>
   <% elsif current_user.requested.include?(u) %>
-    <b>Requested</b>
+    <sub>Requested</sub>
   <% else %>
     <%= form_tag '/roommates' do %>
       <%= hidden_field_tag :roommate_id, "#{u.id}" %>
