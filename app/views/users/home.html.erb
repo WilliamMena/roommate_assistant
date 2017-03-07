@@ -13,3 +13,22 @@
     <p>No list's available at the moment. <%= link_to 'Create a List!', new_list_path %><!-- link_to creating a list --></p>
   <% end %>
 </ul>
+
+
+<h3>Pending Roommates</h3>
+<ul>
+  <% if !@pending.empty? %>
+    <% @pending.each do |u| %>
+      <%= u.name %>
+      <br>
+      <%= u.email %>
+        <%= form_tag '/roommates' do %>
+          <%= hidden_field_tag :roommate_id, "#{u.id}" %>
+          <%= submit_tag "Add Roommate" %>
+        <% end %>
+      <br></br>
+    <% end %>
+  <% else %>
+    <p>No new requests</p>
+  <% end %>
+</ul>

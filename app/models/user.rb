@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
     pending.delete_if {|r| r == nil}
   end
 
-  def requested
+  def requested # names of people who you're requesting instead of Roommate Instance
     requested = []
     requested = requested_roommates.map {|r| r.roommate} 
   end

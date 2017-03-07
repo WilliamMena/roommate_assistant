@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def home
     @lists = current_user.lists
+    @pending = current_user.pending_roommates
   end
 
   def index

@@ -2,8 +2,12 @@ class RoommatesController < ApplicationController
 
 
   def create
-    current_user.roommates.create(roommate_id: params[:roommate_id])
-    redirect_to users_path
+    current_user.roommates.find_or_create_by(roommate_id: params[:roommate_id])
+    if current_user.actual_roommates.include?(User.find(params[:roommate_id]))
+      redirect_to home_path
+    else
+      redirect_to users_path
+    end
   end
 
   def destroy #destroy's the roommate relationship, then redirects to roommates page.

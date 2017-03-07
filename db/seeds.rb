@@ -26,9 +26,9 @@ kaylee = User.create(email: "kaylee@test.com", password: "password", name: "Kayl
 
 
 
-# william.roommates.build(roommate_id: rocio.id).save
-# rocio.roommates.build(roommate_id: william.id).save
-# william.roommates.build(roommate_id: joshua.id).save
+william.roommates.build(roommate_id: rocio.id).save
+rocio.roommates.build(roommate_id: william.id).save
+william.roommates.build(roommate_id: joshua.id).save
 
 
 
