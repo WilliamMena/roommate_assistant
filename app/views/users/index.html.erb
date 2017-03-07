@@ -8,7 +8,11 @@
   Email: <%= u.email %>
   <br>
   
-  <% if !current_user.actual_roommates.include?(u) %>
+  <% if current_user.actual_roommates.include?(u) %>
+    <b>Already Roommate</b>
+  <% elsif current_user.requested.include?(u) %>
+    <b>Requested</b>
+  <% else %>
     <%= form_tag '/roommates' do %>
       <%= hidden_field_tag :roommate_id, "#{u.id}" %>
       <%= submit_tag "Add Roommate" %>

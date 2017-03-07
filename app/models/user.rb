@@ -48,7 +48,12 @@ class User < ActiveRecord::Base
   def requested_roommates #roommates you're requesting but they haven't approved of yet --- RETURNS THE USER, not the roommate relationship
     pending = []
     pending = roommates.map {|r| r if !actual_roommates.include?(r.roommate)}
-    pending.delete_if {|r| r.roommate == nil}
+    pending.delete_if {|r| r == nil}
+  end
+
+  def requested
+    requested = []
+    requested = requested_roommates.map {|r| r.roommate} 
   end
 
 end

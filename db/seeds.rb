@@ -9,10 +9,21 @@
 william = User.create(email: "william@test.com", password: "password", name: "William")
 rocio = User.create(email: "rocio@test.com", password: "password", name: "Rocio")
 joshua = User.create(email: "joshua@test.com", password: "password", name: "Joshua")
+natasha = User.create(email: "natasha@test.com", password: "password", name: "Natasha")
+erika = User.create(email: "erika@test.com", password: "password", name: "Erika")
+fenix = User.create(email: "fenix@test.com", password: "password", name: "Fenix")
+kevin = User.create(email: "kevin@test.com", password: "password", name: "Kevin")
+kaylee = User.create(email: "kaylee@test.com", password: "password", name: "Kaylee")
 
 # william = User.find_by_name("William")
 # rocio = User.find_by_name("Rocio")
 # joshua = User.find_by_name("Joshua")
+# natasha = User.find_by_name("Natasha")
+# erika = User.find_by_name("Erika")
+# fenix = User.find_by_name("Fenix")
+# kevin = User.find_by_name("Kevin")
+# kaylee = User.find_by_name("Kaylee")
+
 
 
 # william.roommates.build(roommate_id: rocio.id).save
