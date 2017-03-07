@@ -9,7 +9,7 @@
   <br>
   
   <% if current_user.actual_roommates.include?(u) %>
-    <b>Already Roommate</b>
+    <b>Roommate</b>
   <% elsif current_user.requested.include?(u) %>
     <b>Requested</b>
   <% else %>
