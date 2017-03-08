@@ -19,7 +19,7 @@ class ListsController < ApplicationController
     # UPDATE PARAMS SO I CAN CREATE A STRONG PARAMS AND FIX SO WHEN I EDIT MY LIST I CAN SELECT AND IT REMEMBERS WHO I HAVE VIEWABLE
     @list = List.find(params[:id])
     @list.update(list_params)
-    @list.viewable_to(params[:list][:user_id])
+    # @list.viewable_to(params[:list][:user_id])
     redirect_to user_list_path(current_user.id, @list.id)
   end
 
@@ -44,6 +44,6 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:title)
+    params.require(:list).permit(:title, viewer_ids:[])
   end
 end

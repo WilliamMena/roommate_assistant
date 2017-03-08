@@ -5,7 +5,10 @@
   <%= link_to 'Delete Post', list_path(@list), method: :delete %>
 <% end %>
 
-  <p>Nil? <%= @list.viewable.nil? %></p>
+
+<br></br>
+Viewers Empty? <%= @list.viewers.empty? %>
+
 
 <ul>
   <li>

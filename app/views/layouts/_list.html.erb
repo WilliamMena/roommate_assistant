@@ -1,9 +1,9 @@
-<%= form_for(@list) do |l| %>
+<%= form_for @list do |l| %>
   <%= l.label :title %>
   <%= l.text_field :title %>
   <%= l.submit %>
 
   <br></br>
-    Viewable to: <%= l.collection_check_boxes :user_id, current_user.actual_roommates, :id, :name %>
+    Viewable to: <%= l.collection_check_boxes :viewer_ids, current_user.actual_roommates, :id, :name %>
   <br>
 <% end %>
