@@ -2,4 +2,8 @@
   <%= l.label :title %>
   <%= l.text_field :title %>
   <%= l.submit %>
+
+  <br></br>
+    Viewable to: <%= l.collection_check_boxes :user_id, current_user.actual_roommates, :id, :name %>
+  <br>
 <% end %>
