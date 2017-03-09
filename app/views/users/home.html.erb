@@ -14,6 +14,12 @@
   <% end %>
 </ul>
 
+<h3>Lists you're shared on</h3>
+<ul>
+  <% current_user.viewable_lists.each do |l| %>
+    <%= link_to l.title, user_list_path(l.user, l) %>
+  <% end %>
+</ul>
 
 <h3>Pending Roommates</h3>
 <ul>
