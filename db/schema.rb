@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20170310043736) do
 
   create_table "chores", force: :cascade do |t|
     t.integer  "list_id"
+    t.integer  "user_id"
     t.string   "name"
     t.boolean  "completed",  default: false
     t.datetime "created_at",                 null: false
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170310043736) do
   create_table "lists", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
+    t.integer  "list_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

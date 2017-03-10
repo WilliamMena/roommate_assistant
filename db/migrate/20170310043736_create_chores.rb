@@ -2,6 +2,7 @@ class CreateChores < ActiveRecord::Migration
   def change
     create_table :chores do |t|
       t.integer :list_id
+      t.integer :user_id
       t.string :name
       t.boolean :completed, default: false
 

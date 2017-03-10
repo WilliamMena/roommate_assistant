@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   has_many :list_viewers, :foreign_key => :user_id
   has_many :viewable_lists, through: :list_viewers, :source => :list
 
+  has_many :chores
+
 
   # user.roommates.build(roommate_id: user2.id)
   # user.mates returns the user instances of each roommate

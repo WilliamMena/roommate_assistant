@@ -1,6 +1,8 @@
 <h1><%= @list.title %></h1>
 
 Created By: <%= @list.user.name %>
+<br>
+List Type: <%= @list.list_type.capitalize %>
 <br><br>
 <% if @list.user == current_user %>
   <%= link_to 'Edit List', edit_list_path(@list) %>
