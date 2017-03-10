@@ -5,8 +5,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all.to_a
-    @users.delete_if {|u| u == current_user }
+    if current_user.nil?
+      redirect_to root_path
+    else
+      @users = User.all.to_a
+      @users.delete_if {|u| u == current_user }
+    end
   end
 
 end

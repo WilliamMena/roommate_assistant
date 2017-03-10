@@ -4,14 +4,19 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :name, presence: true
+  validates :email, uniqueness: true
+  
+
   has_many :roommates, :class_name => 'Roommate'
   has_many :mates, :through => :roommates, :source => :roommate
   has_many :inverse_roommates, :class_name => "Roommate", :foreign_key => "roommate_id"
   has_many :inverse_mates, :through => :inverse_roommates, :source => :user
 
+  # List the user created
   has_many :lists
 
-
+  # Lists that the user is shared on
   has_many :list_viewers, :foreign_key => :user_id
   has_many :viewable_lists, through: :list_viewers, :source => :list
 
