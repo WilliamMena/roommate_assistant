@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   post '/grocery_items/:id/buy' => 'grocery_items#buy'
   post '/grocery_items/:id/unbuy' => 'grocery_items#unbuy'
 
+  resources :chores, only: [:create, :update]
+
   resources :roommates, only: [:index, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.

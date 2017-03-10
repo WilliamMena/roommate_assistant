@@ -1,13 +1,11 @@
 <h1><%= @list.title %></h1>
 
+Created By: <%= @list.user.name %>
+<br><br>
 <% if @list.user == current_user %>
   <%= link_to 'Edit List', edit_list_path(@list) %>
   <%= link_to 'Delete Post', list_path(@list), method: :delete %>
 <% end %>
-
-
-<br></br>
-Viewers Empty? <%= @list.viewers.empty? %>
 
 
 <ul>
