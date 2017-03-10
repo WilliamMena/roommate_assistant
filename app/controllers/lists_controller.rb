@@ -1,5 +1,7 @@
 class ListsController < ApplicationController
   
+  before_action :validate_user
+
   def new
     @list = List.new
   end

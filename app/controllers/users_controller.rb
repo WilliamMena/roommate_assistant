@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :validate_user
+  
   def home
     @lists = current_user.lists
     @pending = current_user.pending_roommates

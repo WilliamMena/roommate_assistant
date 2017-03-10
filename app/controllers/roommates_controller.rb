@@ -1,5 +1,6 @@
 class RoommatesController < ApplicationController
 
+  before_action :validate_user
 
   def create
     current_user.roommates.find_or_create_by(roommate_id: params[:roommate_id])
