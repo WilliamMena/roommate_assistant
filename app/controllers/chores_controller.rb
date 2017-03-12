@@ -19,5 +19,12 @@ class ChoresController < ApplicationController
     redirect_to user_list_path(chore.list.user.id, chore.list.id)
   end
 
+  def destroy
+    chore = Chore.find(params[:id])
+    chore.destroy
+    redirect_to user_list_path(chore.list.user.id, chore.list.id)
+    flash.alert = "Chore Deleted"
+  end
+
 
 end

@@ -21,6 +21,13 @@ class GroceryItemsController < ApplicationController
     redirect_to user_list_path(gi.list.user.id, gi.list.id)
   end
 
+  def destroy
+    gi = GroceryItem.find(params[:id])
+    gi.destroy
+    redirect_to user_list_path(gi.list.user.id, gi.list.id)
+    flash.alert = "Grocery Deleted"
+  end
+
 
 
 end
