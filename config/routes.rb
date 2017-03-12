@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 
   resources :chores, only: [:create, :update]
 
+  post '/chores/:id/complete' => 'chores#complete'
+  post '/chores/:id/incomplete' => 'chores#incomplete'
+
   resources :roommates, only: [:index, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.

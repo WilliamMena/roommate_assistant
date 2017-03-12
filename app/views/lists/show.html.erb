@@ -51,9 +51,11 @@ List Type: <%= @list.list_type.capitalize %>
       <% if c.completed? %>
         <%= content_tag(:div, c.name, :id => "finished-item") %>
         Assigned to: <%= c.user.name %>
+        <br><%= link_to 'Incomplete', "/chores/#{c.id}/incomplete", method: 'post' %>
       <% else %>
         <%= content_tag(:div, c.name, :id => "unfinished-item") %>
         Assigned to: <%= c.user.name %>
+        <br><%= link_to 'Complete', "/chores/#{c.id}/complete", method: 'post' %>
       <% end %>
     </li>
     <% end %>

@@ -7,6 +7,8 @@
   <% if !@lists.empty? %>
     <% @lists.each do |l| %>
       <%= link_to l.title, user_list_path(current_user.id, l.id)  %>
+      <br>
+      <sub>Type: <%= l.list_type.capitalize %></sub>
       <br></br>
     <% end %>
   <% else %>
