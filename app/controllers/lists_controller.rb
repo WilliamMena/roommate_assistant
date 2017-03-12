@@ -18,10 +18,8 @@ class ListsController < ApplicationController
   end
 
   def update
-    # UPDATE PARAMS SO I CAN CREATE A STRONG PARAMS AND FIX SO WHEN I EDIT MY LIST I CAN SELECT AND IT REMEMBERS WHO I HAVE VIEWABLE
     @list = List.find(params[:id])
     @list.update(list_params)
-    # @list.viewable_to(params[:list][:user_id])
     redirect_to user_list_path(current_user.id, @list.id)
   end
 

@@ -10,10 +10,12 @@ class List < ActiveRecord::Base
   enum list_type: [:shopping, :chore]
 
   def assign
+    array = []
+    array = viewers.to_a unless viewers.empty?
     if !viewers.include?(user)
-      viewers << user
+      array << user
     end
     save
-    viewers
+    array
   end
 end
