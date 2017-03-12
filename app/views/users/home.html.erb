@@ -22,7 +22,7 @@
     No lists you're shared on
   <% else %>
     <% current_user.viewable_lists.each do |l| %>
-      <%= link_to l.title, user_list_path(l.user, l) %>
+      <%= link_to l.title, user_list_path(l.user, l) %> - <%= l.user.name %>
       <br></br>
     <% end %>
   <% end %>

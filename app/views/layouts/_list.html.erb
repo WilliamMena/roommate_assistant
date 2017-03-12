@@ -2,9 +2,13 @@
   <%= l.label :title %>
   <%= l.text_field :title %>
   <br></br>
-  <%= l.label :list_type %>
-  <%= l.collection_select :list_type, List.list_types, :first, :first %>
-  <br></br>
+  
+  <% if params[:action] != "edit" %>
+    <%= l.label :list_type %>
+    <%= l.collection_select :list_type, List.list_types, :first, :first %>
+    <br></br>
+  <% end %>
+  
   <%= l.submit %>
 
   <br></br>
