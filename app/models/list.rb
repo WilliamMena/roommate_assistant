@@ -8,4 +8,12 @@ class List < ActiveRecord::Base
 
   #need to create joins table to hold who can view which posts
   enum list_type: [:shopping, :chore]
+
+  def assign
+    if !viewers.include?(user)
+      viewers << user
+    end
+    save
+    viewers
+  end
 end

@@ -38,6 +38,11 @@ list1 = List.create(title: "Shopping List, Jan 1", user_id: william.id, list_typ
 list2 = List.create(title: "Another Shopping List, Nov 22", user_id: rocio.id, list_type: 0)
 # list2.groceries.build(item: "Cheese")
 
+list3 = List.create(title: "Test Chore List", user_id: william.id, list_type: 1)
+
 GroceryItem.create(item: "Milk", list_id: list1.id )
 GroceryItem.create(item: "Eggs", list_id: list1.id )
 GroceryItem.create(item: "Cheese", list_id: list2.id )
+Chore.create(name: "Wash Dishes", list_id: list3.id, user_id: rocio.id )
+Chore.create(name: "Mop the floor", list_id: list3.id, user_id: rocio.id )
+Chore.create(name: "Do Laundry", list_id: list3.id, user_id: william.id )
