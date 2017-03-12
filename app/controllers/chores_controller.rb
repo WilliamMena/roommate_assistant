@@ -21,9 +21,13 @@ class ChoresController < ApplicationController
 
   def destroy
     chore = Chore.find(params[:id])
-    chore.destroy
+    if chore.list.user == current_user
+      chore.destroy
+      flash.alert = "Chore Deleted"
+    else
+      flash.alert = "You did not create this list"
+    end
     redirect_to user_list_path(chore.list.user.id, chore.list.id)
-    flash.alert = "Chore Deleted"
   end
 
 

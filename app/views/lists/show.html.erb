@@ -30,7 +30,10 @@ List Type: <%= @list.list_type.capitalize %>
           <%= content_tag(:div, g.item, :id => "unfinished-item") %>
           <%= link_to 'Buy', "/grocery_items/#{g.id}/buy", method: 'post' %>
         <% end %>
-        <br><%= link_to "Delete Item", "/grocery_items/#{g.id}", method: 'delete' %>
+
+        <% if @list.user == current_user %>
+          <br><%= link_to "Delete Item", "/grocery_items/#{g.id}", method: 'delete' %>
+        <% end %>
       </li>
     <% end %>
 
@@ -58,7 +61,11 @@ List Type: <%= @list.list_type.capitalize %>
         Assigned to: <%= c.user.name %>
         <br><%= link_to 'Complete', "/chores/#{c.id}/complete", method: 'post' %>
       <% end %>
-      <br><%= link_to "Delete Item", "/chores/#{c.id}", method: 'delete' %>
+
+
+      <% if @list.user == current_user %>
+        <br><%= link_to "Delete Item", "/chores/#{c.id}", method: 'delete' %>
+      <% end %>
     </li>
     <% end %>
 
