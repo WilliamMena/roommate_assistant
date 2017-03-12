@@ -32,10 +32,10 @@ william.roommates.build(roommate_id: joshua.id).save
 
 
 
-list1 = List.create(title: "Shopping List, Jan 1", user_id: william.id, list_type: 1)
+list1 = List.create(title: "Shopping List, Jan 1", user_id: william.id, list_type: 0)
 # list1.groceries.build(item: "Milk")
 # list1.groceries.build(item: "Eggs")
-list2 = List.create(title: "Another Shopping List, Nov 22", user_id: rocio.id, list_type: 1)
+list2 = List.create(title: "Another Shopping List, Nov 22", user_id: rocio.id, list_type: 0)
 # list2.groceries.build(item: "Cheese")
 
 GroceryItem.create(item: "Milk", list_id: list1.id )

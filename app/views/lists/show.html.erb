@@ -11,24 +11,34 @@ List Type: <%= @list.list_type.capitalize %>
 
 
 <ul>
-  <li>
-    <%= form_tag(grocery_items_path) do %>
-      <%= hidden_field_tag 'list_id', @list.id %>
-      <%= text_field_tag 'item', nil, placeholder: 'New Item...' %> <%= submit_tag 'New Item' %>
-    <% end %>
-  </li>
-
-  <% @list.grocery_items.each do |g| %>
-    <br>
+  <% if @list.shopping? %>
     <li>
-      <% if g.bought %>
-        <%= content_tag(:div, g.item, :id => "finished-item") %>
-        <%= link_to 'Un-buy', "/grocery_items/#{g.id}/unbuy", method: 'post' %>
-      <% else %>
-        <%= content_tag(:div, g.item, :id => "unfinished-item") %>
-        <%= link_to 'Buy', "/grocery_items/#{g.id}/buy", method: 'post' %>
+      <%= form_tag(grocery_items_path) do %>
+        <%= hidden_field_tag 'list_id', @list.id %>
+        <%= text_field_tag 'item', nil, placeholder: 'New Item...' %> <%= submit_tag 'New Item' %>
       <% end %>
     </li>
+
+    <% @list.grocery_items.each do |g| %>
+      <br>
+      <li>
+        <% if g.bought %>
+          <%= content_tag(:div, g.item, :id => "finished-item") %>
+          <%= link_to 'Un-buy', "/grocery_items/#{g.id}/unbuy", method: 'post' %>
+        <% else %>
+          <%= content_tag(:div, g.item, :id => "unfinished-item") %>
+          <%= link_to 'Buy', "/grocery_items/#{g.id}/buy", method: 'post' %>
+        <% end %>
+      </li>
+    <% end %>
+
+  <% elsif @list.chore? %>
+    <% @list.chores.each do |c| %>
+    <li>
+      <%= content_tag(:div, c.name, :id => "unfinished-item") %>
+      Assigned to: <%= c.user.name %>
+    </li>
+    <% end %>
   <% end %>
 </ul>
 

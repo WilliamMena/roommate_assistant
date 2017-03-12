@@ -23,6 +23,4 @@ class GroceryItemsController < ApplicationController
 
 
 
-
-
 end
