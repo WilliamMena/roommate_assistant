@@ -21,6 +21,7 @@
   <% else %>
     <% current_user.viewable_lists.each do |l| %>
       <%= link_to l.title, user_list_path(l.user, l) %>
+      <br></br>
     <% end %>
   <% end %>
 </ul>

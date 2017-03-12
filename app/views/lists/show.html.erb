@@ -40,7 +40,7 @@ List Type: <%= @list.list_type.capitalize %>
       <%= form_tag(chores_path) do %>
         <%= hidden_field_tag 'list_id', @list.id %>
         <%= text_field_tag 'chore', nil, placeholder: 'New Chore...' %>
-        <%= collection_select :user, :user_id, @list.assign , :id, :name  %>
+        <%= collection_select :user, :user_id, @list.assign, :id, :name  %>
         <%= submit_tag 'New Chore' %>
       <% end %>
     </li>

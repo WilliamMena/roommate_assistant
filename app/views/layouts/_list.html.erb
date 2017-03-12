@@ -1,6 +1,10 @@
 <%= form_for @list do |l| %>
   <%= l.label :title %>
   <%= l.text_field :title %>
+  <br></br>
+  <%= l.label :list_type %>
+  <%= l.collection_select :list_type, List.list_types, :first, :first %>
+  <br></br>
   <%= l.submit %>
 
   <br></br>
