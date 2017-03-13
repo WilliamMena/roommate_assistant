@@ -30,6 +30,8 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github', github: 'intridea/omniauth-github'
 
+gem "figaro"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

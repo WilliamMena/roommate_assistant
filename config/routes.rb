@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
+
+  get '/auth/:provider/callback', to: 'sessions#create'
+  
   root 'sessions#welcome'
 
   get '/home' => 'users#home'
