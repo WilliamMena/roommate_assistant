@@ -9,4 +9,6 @@ class SessionsController < ApplicationController
       render :welcome
     end
   end
+
+
 end

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { registrations: 'registrations' }
+  devise_for :users, :controllers => { registrations: 'registrations', :omniauth_callbacks => "callbacks" }
 
-  get '/auth/:provider/callback', to: 'sessions#create'
-  
+  # get '/auth/:provider/callback', to: 'callbacks#github'
+
   root 'sessions#welcome'
 
   get '/home' => 'users#home'
