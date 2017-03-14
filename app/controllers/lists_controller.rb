@@ -12,9 +12,13 @@ class ListsController < ApplicationController
 
   def create
     @list = current_user.lists.build(list_params)
-    @list.save
-    redirect_to user_list_path(current_user.id, @list.id)
-    flash.alert = "New List created"
+    if @list.save
+      redirect_to user_list_path(current_user.id, @list.id)
+      flash.alert = "New List created"
+    else
+      redirect_to new_list_path
+      flash.alert = @list.errors.full_messages[0]
+    end
   end
 
   def update
