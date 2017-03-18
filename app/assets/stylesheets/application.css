@@ -35,3 +35,12 @@ a:visited {
 a:hover {
   color: purple;
 }
+
+footer {
+    position:absolute;
+    text-align: center;
+    border-top: thin solid #e6e6e6;
+    bottom:0;
+    width:100%;
+    height:60px;
+}
