@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
     requested = requested_roommates.map {|r| r.roommate} 
   end
 
-  def self.from_omniauth(auth)
+  def self.from_omniauth(auth) # Creates user from omniauth
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid

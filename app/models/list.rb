@@ -8,9 +8,9 @@ class List < ActiveRecord::Base
 
   validates :title, presence: true
 
-  #need to create joins table to hold who can view which posts
   enum list_type: [:shopping, :chore]
 
+  # used for assigning List Owner to the collection of users chores can be assigned to
   def assign
     array = []
     array = viewers.to_a unless viewers.empty?
