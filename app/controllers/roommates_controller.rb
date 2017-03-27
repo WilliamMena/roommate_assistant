@@ -2,7 +2,7 @@ class RoommatesController < ApplicationController
 
   before_action :validate_user
 
-  def create
+  def create # Create the roommate relatonship
     current_user.roommates.find_or_create_by(roommate_id: params[:roommate_id])
     if current_user.actual_roommates.include?(User.find(params[:roommate_id]))
       redirect_to home_path
@@ -24,7 +24,7 @@ class RoommatesController < ApplicationController
     end
   end
 
-  def index
+  def index # Displays all roommates other than the current user
     if !current_user.actual_roommates.empty?
       @users = current_user.actual_roommates
     else
