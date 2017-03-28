@@ -77,4 +77,21 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.with_most_lists
+    #show the user with the mosts lists
+    count = 0
+    user = User.new
+
+    User.all.each do |u|
+      if u.lists.count >= count
+        count = u.lists.count
+        user = u
+      end
+    end
+    user
+  end
+
+
+
+
 end

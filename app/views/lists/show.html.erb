@@ -5,6 +5,7 @@ Created By: <%= @list.user.name %>
 List Type: <%= @list.list_type.capitalize %>
 <br><br>
 <% if @list.user == current_user %>
+    <!-- Edit functions only appear if current user owns this list -->
   <%= link_to 'Edit List', edit_list_path(@list) %>
   <%= link_to 'Delete Post', list_path(@list), method: :delete %>
 <% end %>
@@ -12,8 +13,10 @@ List Type: <%= @list.list_type.capitalize %>
 
 <ul>
   <% if @list.shopping? %>
+    <!-- show shopping list -->
 
     <li>
+        <!-- new item -->
       <%= form_tag(grocery_items_path) do %>
         <%= hidden_field_tag 'list_id', @list.id %>
         <%= text_field_tag 'item', nil, placeholder: 'New Item...' %> <%= submit_tag 'New Item' %>
@@ -38,10 +41,12 @@ List Type: <%= @list.list_type.capitalize %>
     <% end %>
 
   <% elsif @list.chore? %>
+    <!-- show chore list -->
 
 
     <li>
       <%= form_tag(chores_path) do %>
+          <!-- new item -->
         <%= hidden_field_tag 'list_id', @list.id %>
         <%= text_field_tag 'chore', nil, placeholder: 'New Chore...' %>
         <%= collection_select :user, :user_id, @list.assign, :id, :name  %>
@@ -67,6 +72,7 @@ List Type: <%= @list.list_type.capitalize %>
         <br><%= link_to "Delete Item", "/chores/#{c.id}", method: 'delete' %>
       <% end %>
     </li>
+    <br>
     <% end %>
 
   <% end %>

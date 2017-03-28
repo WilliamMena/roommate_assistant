@@ -20,4 +20,32 @@ class List < ActiveRecord::Base
     save
     array
   end
+
+  def self.with_most_items #grocery list
+    count = 0
+    list = List.new
+
+    where(list_type: 0).each do |l|
+      if l.grocery_items.count >= count
+        count = l.grocery_items.count
+        list = l
+      end
+    end
+    # only returns the list with the most items
+    list
+  end
+
+  def self.with_most_chores
+    count = 0
+    list = List.new
+
+    where(list_type: 1).each do |l|
+      if l.chores.count >= count
+        count = l.chores.count
+        list = l
+      end
+    end
+    # returns a hash with all neccesary info
+    list_hash = {:list => list, :count => count}
+  end
 end
