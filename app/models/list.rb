@@ -48,4 +48,27 @@ class List < ActiveRecord::Base
     # returns a hash with all neccesary info
     list_hash = {:list => list, :count => count}
   end
+
+  def self.with_most_list_items
+    count = 0
+    list = List.new
+    list_hash = {}
+
+    all.each do |l|
+      if l.chore?
+        if l.chores.count >= count
+          list = l
+          count = l.chores.count
+        end
+        list_hash = {:list => list, :chore_count => count, :list_type => "Chore"}
+      elsif l.shopping?
+        if l.grocery_items.count >= count
+          list = l
+          count = l.grocery_items.count
+        end
+        list_hash = {:list => list, :item_count => count, :list_type => "Shopping"}
+      end
+    end
+    list_hash
+  end
 end
