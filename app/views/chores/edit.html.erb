@@ -4,5 +4,9 @@
   <%= c.label :name %>
   <%= c.text_field :name %>
   <br></br>
+  Assign To:
+
+  <%= c.collection_select :user_id, @chore.list.assign, :id, :name  %>
+  <br></br>
   <%= c.submit %>
 <% end %>

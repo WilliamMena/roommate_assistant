@@ -69,8 +69,8 @@ List Type: <%= @list.list_type.capitalize %>
 
 
       <% if @list.user == current_user %>
-        <br><%= link_to "Delete Item", "/chores/#{c.id}", method: 'delete' %>
         <br><%= link_to "Edit Item", edit_chore_path(c) %>
+        <br><%= link_to "Delete Item", "/chores/#{c.id}", method: 'delete' %>
       <% end %>
     </li>
     <br>
