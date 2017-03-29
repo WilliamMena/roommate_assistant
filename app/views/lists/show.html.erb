@@ -50,7 +50,7 @@ List Type: <%= @list.list_type.capitalize %>
           <!-- new item -->
         <%= hidden_field_tag 'list_id', @list.id %>
         <%= text_field_tag 'chore', nil, placeholder: 'New Chore...' %>
-        <%= collection_select :user, :user_id, @list.assign, :id, :name  %>
+        <%= collection_select :user, :user_id, @list.assign, :id, :name, {include_blank: true}  %>
         <%= submit_tag 'New Chore' %>
       <% end %>
     </li>
@@ -60,11 +60,11 @@ List Type: <%= @list.list_type.capitalize %>
     <li>
       <% if c.completed? %>
         <%= content_tag(:div, c.name, :id => "finished-item") %>
-        Assigned to: <%= c.user.name %>
+        Assigned to: <%= c.user.present? ? c.user.name : 'No One' %> 
         <br><%= link_to 'Incomplete', "/chores/#{c.id}/incomplete", method: 'post' %>
       <% else %>
         <%= content_tag(:div, c.name, :id => "unfinished-item") %>
-        Assigned to: <%= c.user.name %>
+        Assigned to: <%= c.user.present? ? c.user.name : 'No One' %>
         <br><%= link_to 'Complete', "/chores/#{c.id}/complete", method: 'post' %>
       <% end %>
 
