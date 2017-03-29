@@ -35,6 +35,7 @@ List Type: <%= @list.list_type.capitalize %>
         <% end %>
 
         <% if @list.user == current_user %>
+          <br><%= link_to "Edit Item", edit_grocery_item_path(g) %>
           <br><%= link_to "Delete Item", "/grocery_items/#{g.id}", method: 'delete' %>
         <% end %>
       </li>

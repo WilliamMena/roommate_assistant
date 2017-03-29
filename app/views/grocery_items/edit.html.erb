@@ -1,0 +1,9 @@
+<h1>Edit Grocery Item</h1>
+
+<%= form_for @grocery_item do |g| %>
+  <%= g.label :item %>
+  <%= g.text_field :item %>
+
+  <br></br>
+  <%= g.submit %>
+<% end %>
