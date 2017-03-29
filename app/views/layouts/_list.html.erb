@@ -7,6 +7,17 @@
     <%= l.label :list_type %>
     <%= l.collection_select :list_type, List.list_types, :first, :first %>
     <br></br>
+    <p>OPTIONAL --- Enter a chore or item</p>
+    <%= form_for :chores do |c| %>
+      <%= c.label :chore_name %>
+      <%= c.text_field :name %>
+    <% end %>
+    <p>---OR---</p>
+    <%= form_for :grocery_items do |c| %>
+      <%= c.label :grocery_name %>
+      <%= c.text_field :item %>
+    <% end %>
+    <br></br>
   <% end %>
   
   <%= l.submit %>
