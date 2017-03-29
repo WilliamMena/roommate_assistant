@@ -8,6 +8,9 @@ class List < ActiveRecord::Base
 
   validates :title, presence: true
 
+  # showing below removes the forms view for grocery_items and chores
+  accepts_nested_attributes_for :grocery_items, :chores
+
   enum list_type: [:shopping, :chore]
 
   # used for assigning List Owner to the collection of users chores can be assigned to

@@ -4,6 +4,8 @@ class ListsController < ApplicationController
   
   def new
     @list = List.new
+    @list.chores.build
+    @list.grocery_items.build
   end
 
   def edit
@@ -54,6 +56,6 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:title, :list_type, viewer_ids:[], chore_attributes: [:name])
+    params.require(:list).permit(:title, :list_type, viewer_ids:[], grocery_items_attributes: [:item], chores_attributes: [:name])
   end
 end

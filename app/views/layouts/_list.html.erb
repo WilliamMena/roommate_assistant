@@ -12,12 +12,12 @@
 
 
     <%= l.fields_for :grocery_items do |grocery_items_form| %>
-      <%= grocery_items_form.label :grocery_name %>
+      <%= grocery_items_form.label :grocery_item %>
       <%= grocery_items_form.text_field :item %>
     <% end %>
 
     <p>---OR---</p>
-    
+
     <%= l.fields_for :chores do |chores_form| %>
       <%= chores_form.label :chore_name %>
       <%= chores_form.text_field :name %>
