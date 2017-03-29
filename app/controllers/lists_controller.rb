@@ -11,6 +11,7 @@ class ListsController < ApplicationController
   end
 
   def create
+    binding.pry
     @list = current_user.lists.build(list_params)
     if @list.save
       redirect_to user_list_path(current_user.id, @list.id)
@@ -53,6 +54,6 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:title, :list_type, viewer_ids:[])
+    params.require(:list).permit(:title, :list_type, viewer_ids:[], chore_attributes: [:name])
   end
 end
