@@ -32,6 +32,7 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+
     unless @list.user == current_user || @list.viewers.include?(current_user)
       # refactor
       redirect_to home_path

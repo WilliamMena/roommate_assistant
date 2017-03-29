@@ -53,6 +53,8 @@ List Type: <%= @list.list_type.capitalize %>
         <%= collection_select :user, :user_id, @list.assign, :id, :name, {include_blank: true}  %>
         <%= submit_tag 'New Chore' %>
       <% end %>
+
+
     </li>
 
     <br>

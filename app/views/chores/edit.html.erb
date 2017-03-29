@@ -6,7 +6,7 @@
   <br></br>
   Assign To:
 
-  <%= c.collection_select :user_id, @chore.list.assign, :id, :name  %>
+  <%= c.collection_select :user_id, @chore.list.assign, :id, :name, {include_blank: true}  %>
   <br></br>
   <%= c.submit %>
 <% end %>
