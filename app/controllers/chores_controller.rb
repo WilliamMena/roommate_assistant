@@ -7,6 +7,17 @@ class ChoresController < ApplicationController
     redirect_to user_list_path(list.user.id, list.id)
   end
 
+  def edit
+    @chore = Chore.find(params[:id])
+  end
+
+  def update
+    chore = Chore.find(params[:id])
+    chore.name = params[:chore][:name]
+    chore.save
+    redirect_to user_list_path(current_user.id, chore.list.id)
+  end
+
   def complete
     chore = Chore.find(params[:id])
     chore.update(completed: true)

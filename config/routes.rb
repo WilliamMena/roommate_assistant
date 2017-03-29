@@ -14,12 +14,12 @@ Rails.application.routes.draw do
 
   resources :lists, only: [:new, :edit, :create, :update, :destroy]
 
-  resources :grocery_items, only: [:create, :update, :destroy]
+  resources :grocery_items, only: [:create, :edit, :update, :destroy]
 
   post '/grocery_items/:id/buy' => 'grocery_items#buy'
   post '/grocery_items/:id/unbuy' => 'grocery_items#unbuy'
 
-  resources :chores, only: [:create, :update, :destroy]
+  resources :chores, only: [:create, :edit, :update, :destroy]
 
   post '/chores/:id/complete' => 'chores#complete'
   post '/chores/:id/incomplete' => 'chores#incomplete'
