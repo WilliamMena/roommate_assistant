@@ -13,7 +13,7 @@ class ChoresController < ApplicationController
 
   def update
     chore = Chore.find(params[:id])
-    chore.name = params[:chore][:name]
+    chore.update(chore_params)
     chore.save
     redirect_to user_list_path(current_user.id, chore.list.id)
   end
@@ -41,5 +41,11 @@ class ChoresController < ApplicationController
     redirect_to user_list_path(chore.list.user.id, chore.list.id)
   end
 
+
+
+
+  def chore_params
+    params.require(:chore).permit(:name, :user_id)
+  end
 
 end
