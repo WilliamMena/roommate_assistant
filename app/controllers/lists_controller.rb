@@ -14,7 +14,6 @@ class ListsController < ApplicationController
 
   def create
     # might be better if I just create a item_attributes= method which can tell what type of info is being passed
-
     @list = current_user.lists.build(list_params.except!(:grocery_items_attributes, :chores_attributes))
     @list.item_attributes=(list_params)
 
@@ -68,6 +67,6 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:title, :list_type, viewer_ids:[], grocery_items_attributes: [:item], chores_attributes: [:name])
+    params.require(:list).permit(:title, :list_type, viewer_ids:[], grocery_items_attributes: [:item], chores_attributes: [:name, :user_id])
   end
 end

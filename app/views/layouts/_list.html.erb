@@ -4,6 +4,8 @@
   <br></br>
   
   <% if params[:action] != "edit" %>
+    <sub>Remember to choose the appropriate list type.</sub>
+    <br>
     <%= l.label :list_type %>
     <%= l.collection_select :list_type, List.list_types, :first, :first %>
     <br></br>
@@ -21,8 +23,7 @@
     <%= l.fields_for :chores do |chores_form| %>
       <%= chores_form.label :chore_name %>
       <%= chores_form.text_field :name %>
-      <br></br>
-      The chore can be assigned later.
+      <%= chores_form.collection_select :user_id, current_user.actual_roommates, :id, :name, {include_blank: true}  %>
     <% end %>
     <br></br>
 
