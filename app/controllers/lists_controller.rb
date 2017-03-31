@@ -13,9 +13,20 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = current_user.lists.build(list_params)
+    # might be better if I just create a item_attributes= method which can tell what type of info is being passed
 
-    if @list.save
+    @list = current_user.lists.build(list_params.except!(:grocery_items_attributes, :chores_attributes))
+    @list.item_attributes=(list_params)
+
+    # @list = List.new
+
+    # list_params[:chores_attributes].values[0].values.empty?
+    # @list.chores_attributes=(list_params[:chores_attributes].values[0])
+
+    if !@list.errors.full_messages.empty?
+      redirect_to new_list_path
+      flash.alert = @list.errors.full_messages[0]
+    elsif @list.save
       redirect_to user_list_path(current_user.id, @list.id)
       flash.alert = "New List created"
     else

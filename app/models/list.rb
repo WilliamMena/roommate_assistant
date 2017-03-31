@@ -74,4 +74,37 @@ class List < ActiveRecord::Base
     end
     list_hash
   end
+
+  # def grocery_items_attributes=(grocery_items)
+  #   # :item => "Waffle", :list_id => 1
+  #   self.grocery_items.build(grocery_items.values[0])
+  # end
+
+  # def chores_attributes=(chores)
+  #   if chores[:user_id] == nil
+  #     self.chores.build(chores.values.first)
+  #   elsif self.assign.include?(User.find(chores[:user_id]))
+  #     self.chores.build(chores.values.first)
+  #   else
+  #     flash.error = "To assign a chore to someone, they need to be shared to this list."
+  #   end
+  # end
+
+  def item_attributes=(params)
+
+#     params
+# => {"title"=>"asdasc",
+#  "list_type"=>"chore",
+#  "viewer_ids"=>[""],
+#  "grocery_items_attributes"=>{"0"=>{"item"=>""}},
+#  "chores_attributes"=>{"0"=>{"name"=>"asdadw"}}}
+
+    if params[:list_type] == 'chore'
+      chores.build(list_params[:chores_attributes].values.first)
+      # self.errors.add(:chores, "can't be assigned to someone who isn't shared on this list.")
+    elsif params[:list_type] == 'shopping'
+      chores.build(list_params[:grocery_items_attributes].values.first)
+    end
+  end
+
 end
