@@ -93,12 +93,12 @@ class List < ActiveRecord::Base
   def item_attributes=(params)
 
     if params[:list_type] == 'chore'
+        #if people assigned to a chore arent included to people who are shared to this list, give error
       if !params[:viewer_ids].include?(params[:chores_attributes].values.first[:user_id])
         self.errors.add(:chores, "can't be assigned to someone who isn't shared on this list.") 
       else
         chores.build(params[:chores_attributes].values.first)
       end
-      # self.errors.add(:chores, "can't be assigned to someone who isn't shared on this list.")
     elsif params[:list_type] == 'shopping'
       grocery_items.build(params[:grocery_items_attributes].values.first)
     end
