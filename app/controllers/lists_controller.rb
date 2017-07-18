@@ -2,6 +2,11 @@ class ListsController < ApplicationController
 
   before_action :validate_user
 
+  def index
+    @lists = current_user.lists
+  end
+
+
   def new
     @list = List.new
     @list.chores.build
