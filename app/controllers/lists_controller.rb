@@ -12,6 +12,14 @@ class ListsController < ApplicationController
     end
   end
 
+  def shared
+    @lists = current_user.viewable_lists
+    respond_to do |f|
+      f.html { render :index }
+      f.json { render json: @lists_shared}
+    end
+  end
+
 
   def new
     @list = List.new

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   resources :lists, only: [:index, :new, :edit, :create, :update, :destroy]
 
+  get '/lists/shared' => 'lists#shared'
+
   resources :grocery_items, only: [:create, :edit, :update, :destroy]
 
   post '/grocery_items/:id/buy' => 'grocery_items#buy'
