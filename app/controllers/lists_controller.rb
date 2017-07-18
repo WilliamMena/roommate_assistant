@@ -1,7 +1,7 @@
 class ListsController < ApplicationController
-  
+
   before_action :validate_user
-  
+
   def new
     @list = List.new
     @list.chores.build
@@ -13,6 +13,7 @@ class ListsController < ApplicationController
   end
 
   def create
+    # "chores_attributes"=>{"0"=>{"name"=>"zsdcxz", "user_id"=>"9"}}}
     @list = current_user.lists.build(list_params.except!(:grocery_items_attributes, :chores_attributes))
     @list.item_attributes=(list_params)
 

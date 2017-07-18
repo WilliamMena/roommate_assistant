@@ -15,70 +15,12 @@ List Type: <%= @list.list_type.capitalize %>
   <% if @list.shopping? %>
     <!-- show shopping list -->
 
-    <li>
-        <!-- new item -->
-      <%= form_tag(grocery_items_path) do %>
-        <%= hidden_field_tag 'list_id', @list.id %>
-        <%= text_field_tag 'item', nil, placeholder: 'New Item...' %> <%= submit_tag 'New Item' %>
-      <% end %>
-    </li>
-
-    <% @list.grocery_items.each do |g| %>
-      <br>
-      <li>
-        <% if g.bought %>
-          <%= content_tag(:div, g.item, :id => "finished-item") %>
-          <%= link_to 'Un-buy', "/grocery_items/#{g.id}/unbuy", method: 'post' %>
-        <% else %>
-          <%= content_tag(:div, g.item, :id => "unfinished-item") %>
-          <%= link_to 'Buy', "/grocery_items/#{g.id}/buy", method: 'post' %>
-        <% end %>
-
-        <% if @list.user == current_user %>
-          <br><%= link_to "Edit Item", edit_grocery_item_path(g) %>
-          <br><%= link_to "Delete Item", "/grocery_items/#{g.id}", method: 'delete' %>
-        <% end %>
-      </li>
-    <% end %>
+    <%= render partial: 'shopping_list' %>
 
   <% elsif @list.chore? %>
     <!-- show chore list -->
 
-
-    <li>
-      <%= form_tag(chores_path) do %>
-          <!-- new item -->
-        <%= hidden_field_tag 'list_id', @list.id %>
-        <%= text_field_tag 'chore', nil, placeholder: 'New Chore...' %>
-        <%= collection_select :user, :user_id, @list.assign, :id, :name, {include_blank: true}  %>
-        <%= submit_tag 'New Chore' %>
-      <% end %>
-
-
-    </li>
-
-    <br>
-    <% @list.chores.each do |c| %>
-    <li>
-      <% if c.completed? %>
-        <%= content_tag(:div, c.name, :id => "finished-item") %>
-        Assigned to: <%= c.user.present? ? c.user.name : 'No One' %> 
-        <br><%= link_to 'Incomplete', "/chores/#{c.id}/incomplete", method: 'post' %>
-      <% else %>
-        <%= content_tag(:div, c.name, :id => "unfinished-item") %>
-        Assigned to: <%= c.user.present? ? c.user.name : 'No One' %>
-        <br><%= link_to 'Complete', "/chores/#{c.id}/complete", method: 'post' %>
-      <% end %>
-
-
-      <% if @list.user == current_user %>
-        <br><%= link_to "Edit Item", edit_chore_path(c) %>
-        <br><%= link_to "Delete Item", "/chores/#{c.id}", method: 'delete' %>
-      <% end %>
-    </li>
-    <br>
-    <% end %>
+    <%= render partial: 'chores_list' %>
 
   <% end %>
 </ul>
-
