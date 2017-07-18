@@ -5,7 +5,6 @@ class ListsController < ApplicationController
   def index
     @lists = current_user.lists
 
-    @lists_shared = current_user.viewable_lists
     respond_to do |f|
       f.html { render :index }
       f.json { render json: @lists}
@@ -14,9 +13,10 @@ class ListsController < ApplicationController
 
   def shared
     @lists = current_user.viewable_lists
+
     respond_to do |f|
       f.html { render :index }
-      f.json { render json: @lists_shared}
+      f.json { render json: @lists}
     end
   end
 
