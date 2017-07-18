@@ -1,9 +1,20 @@
 <h1>All your lists!</h1>
 
+<h3>Your Lists</h3>
 <ul>
   <% @lists.each do |l| %>
     <li>
       <a href="<%= user_list_path(current_user.id, l.id) %>"><%= l.title %></a>
+    </li>
+    <br>
+  <% end %>
+</ul>
+
+<h3>Lists shared on</h3>
+<ul>
+  <% @lists_shared.each do |l| %>
+    <li>
+      <a href="<%= user_list_path(current_user.id, l.id) %>"><%=  l.title %></a>
     </li>
     <br>
   <% end %>
