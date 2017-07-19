@@ -4,20 +4,11 @@
 
 <div id="lists"></div>
 
-<!-- <script type="text/javascript" charset="utf-8">
-  $(function () {
-    $.get("/lists.json", function(data) {
-      var lists = data
-      if (lists.length > 0) {
-        lists.forEach(function(list, index){
-          $("#lists")[0].innerHTML += `<p><a href='/users/${list.user.id}/lists/${list.id}'>${list.title}</a></p>`
-        })
-      }
-    })
-  })
-</script> -->
-<a href="#" onclick="showLists()">Get Repos</a>
+
+<a href="#" onclick="showLists(); return false;">Get Repos</a>
 
 <script id="lists-template" type="text/x-handlebars-template">
-  {{title}}
+  {{#each this}}
+    <p><a href="/users/{{user.id}}/lists/{{id}}">{{title}}</a></p>
+  {{/each}}
 </script>
