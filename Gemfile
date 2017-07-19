@@ -33,6 +33,7 @@ gem 'omniauth-github', github: 'intridea/omniauth-github'
 gem "figaro"
 
 gem 'active_model_serializers'
+gem 'handlebars'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -10,12 +10,13 @@
 <h3>Shared Lists</h3>
 <% end %>
 
-
-<ul>
-  <% @lists.each do |l| %>
-    <li>
-      <a href="<%= user_list_path(current_user.id, l.id) %>"><%= l.title %></a>
-    </li>
-    <br>
-  <% end %>
-</ul>
+<div id="lists">
+  <ul>
+    <% @lists.each do |l| %>
+      <li>
+        <a href="<%= user_list_path(current_user.id, l.id) %>"><%= l.title %></a>
+      </li>
+      <br>
+    <% end %>
+  </ul>
+</div>

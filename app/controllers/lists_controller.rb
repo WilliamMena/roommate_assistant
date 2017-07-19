@@ -16,7 +16,7 @@ class ListsController < ApplicationController
 
     respond_to do |f|
       f.html { render :index }
-      f.json { render json: @lists}
+      f.json { render json: @lists }
     end
   end
 
