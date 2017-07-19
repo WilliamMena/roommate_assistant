@@ -2,10 +2,10 @@
 
 <%= render '/layouts/list' %>
 
-<div id="lists"></div>
+<div id="lists"><a href="#" onclick="showLists(); return false;">Get Repos</a></div>
 
 
-<a href="#" onclick="showLists(); return false;">Get Repos</a>
+
 
 <script id="lists-template" type="text/x-handlebars-template">
   {{#each this}}
