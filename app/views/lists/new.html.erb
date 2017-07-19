@@ -4,7 +4,7 @@
 
 <div id="lists"></div>
 
-<script type="text/javascript" charset="utf-8">
+<!-- <script type="text/javascript" charset="utf-8">
   $(function () {
     $.get("/lists.json", function(data) {
       var lists = data
@@ -15,4 +15,9 @@
       }
     })
   })
+</script> -->
+<a href="#" onclick="showLists()">Get Repos</a>
+
+<script id="lists-template" type="text/x-handlebars-template">
+  {{title}}
 </script>
