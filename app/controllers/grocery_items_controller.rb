@@ -17,7 +17,8 @@ class GroceryItemsController < ApplicationController
     grocery_item = GroceryItem.find(params[:id])
     grocery_item.update(grocery_params)
     grocery_item.save
-    redirect_to user_list_path(grocery_item.list.user.id, grocery_item.list.id)
+    # when not using ajax, uncomment
+    # redirect_to user_list_path(grocery_item.list.user.id, grocery_item.list.id)
   end
 
   def buy
@@ -40,7 +41,7 @@ class GroceryItemsController < ApplicationController
   end
 
   def grocery_params
-    params.require(:grocery_item).permit(:item)
+    params.require(:grocery_item).permit(:item, :bought)
   end
 
 
