@@ -3,5 +3,7 @@ class ListSerializer < ActiveModel::Serializer
 
   has_many :viewers, serializer: UserSerializer
   has_one :user
+  has_many :grocery_items
+  has_many :chores
 
 end
