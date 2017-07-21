@@ -9,7 +9,7 @@
 
     <% @list.grocery_items.each do |g| %>
       <br>
-      <a href="#" id="statusChange_<%= g.id %>">Change Status</a>
+      <a href="#" class="statusChange" data-item="<%= g.id %>">Change Status</a>
       <li>
         <% if g.bought %>
           <%= content_tag(:div, g.item, :id => "finished-item") %>
