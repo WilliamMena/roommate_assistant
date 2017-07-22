@@ -12,15 +12,17 @@ List Type: <%= @list.list_type.capitalize %>
 
 
 <ul>
-  <% if @list.shopping? %>
-    <!-- show shopping list -->
+  <div id="list_items">
+    <% if @list.shopping? %>
+      <!-- show shopping list -->
 
-    <%= render partial: 'shopping_list' %>
+      <%= render partial: 'shopping_list' %>
 
-  <% elsif @list.chore? %>
-    <!-- show chore list -->
+    <% elsif @list.chore? %>
+      <!-- show chore list -->
 
-    <%= render partial: 'chores_list' %>
+      <%= render partial: 'chores_list' %>
 
-  <% end %>
+    <% end %>
+  </div>
 </ul>

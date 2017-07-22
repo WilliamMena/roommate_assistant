@@ -31,19 +31,29 @@ function attachListeners() {
 
     var listJson = $.get(window.location.pathname+'.json')
 
+
     listJson.done(function(data) {
-      var object = findId(id, data.grocery_items)
-      debugger
+      var item = findId(id, data.grocery_items)
+      item.bought = !item.bought
+      if (item.bought == false) {
+        var buyPhrase = 'unbuy'
+      } else {
+        var buyPhrase = 'buy'
+      }
+
+      var itemSave = $.post(`/grocery_items/${id}/${buyPhrase}`)
+      itemSave.done(function(data){
+        console.log("Hello")
+      })
+
     })
 
-
-    var id = this.attributes["data-item"].value
     // var itemSave = $.ajax({
-    //   type: "PATCH",
-    //   url: `/grocery_items/${id}`,
-    //   data: values
+    //   type: 'POST',
+    //   url: `/grocery_items/${id}/${buyPhrase}`
     // });
     // itemSave.done(function(data) {
+    //   debugger
     //   console.log("Hello")
     // })
   })

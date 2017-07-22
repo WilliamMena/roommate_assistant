@@ -15,7 +15,7 @@
  */
 
 
-#finished-item {
+.finished-item {
   color: red;
   text-decoration: line-through;
 }
