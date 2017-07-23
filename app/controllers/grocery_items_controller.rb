@@ -18,7 +18,7 @@ class GroceryItemsController < ApplicationController
     grocery_item.update(grocery_params)
     grocery_item.save
     # when not using ajax, uncomment
-    # redirect_to user_list_path(grocery_item.list.user.id, grocery_item.list.id)
+    redirect_to user_list_path(grocery_item.list.user.id, grocery_item.list.id)
   end
 
   def buy

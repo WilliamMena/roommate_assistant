@@ -9,19 +9,25 @@
 
     <% @list.grocery_items.each do |g| %>
       <br>
-      <a href="#" class="statusChange" data-item="<%= g.id %>">Change Status</a>
-      <li>
-        <% if g.bought %>
-          <%= content_tag(:div, g.item, :class => "finished-item") %>
-          <%= link_to 'Un-buy', "/grocery_items/#{g.id}/unbuy", method: 'post' %>
-        <% else %>
-          <%= content_tag(:div, g.item, :class => "unfinished-item") %>
-          <%= link_to 'Buy', "/grocery_items/#{g.id}/buy", method: 'post' %>
-        <% end %>
+      <div class="item">
+        <li>
+          <div class="buy_options">
+            <% if g.bought %>
+              <%= content_tag(:div, g.item, :class => "finished-item") %>
+              <!-- <%= link_to 'Un-buy', "/grocery_items/#{g.id}/unbuy", method: 'post' %> -->
+              <a href="#" class="statusChange" data-item="<%= g.id %>">Un-Buy</a>
+            <% else %>
+              <%= content_tag(:div, g.item, :class => "unfinished-item") %>
+              <!-- <%= link_to 'Buy', "/grocery_items/#{g.id}/buy", method: 'post' %> -->
+              <a href="#" class="statusChange" data-item="<%= g.id %>">Buy</a>
+            <% end %>
+          </div>
 
-        <% if @list.user == current_user %>
-          <br><%= link_to "Edit Item", edit_grocery_item_path(g) %>
-          <br><%= link_to "Delete Item", "/grocery_items/#{g.id}", method: 'delete' %>
-        <% end %>
-      </li>
+          <% if @list.user == current_user %>
+            <div class="owner_options">
+              <br><%= link_to "Edit Item", edit_grocery_item_path(g) %>
+              <br><%= link_to "Delete Item", "/grocery_items/#{g.id}", method: 'delete' %>
+          <% end %>
+        </li>
+      </div>
     <% end %>

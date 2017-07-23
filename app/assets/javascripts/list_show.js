@@ -45,7 +45,7 @@ function attachListeners() {
       itemSave.done(function(data){
         console.log("Hello")
       })
-
+      debugger
     })
 
     // var itemSave = $.ajax({
