@@ -27,15 +27,13 @@ function findDiv(id, group) {
 }
 
 function boughtDiv(item, div) {
-  var source   = $("#bought-item-template").html();
-  var template = Handlebars.compile(source);
-  div.innerHTML = template(item)
+  div.getElementsByTagName('div')[0].className = 'finished-item'
+  div.getElementsByClassName('statusChange')[0].textContent = "UnBuy"
 }
 
 function unboughtDiv(item, div) {
-  var source   = $("#unbought-item-template").html();
-  var template = Handlebars.compile(source);
-  div.innerHTML = template(item)
+  div.getElementsByTagName('div')[0].className = 'unfinished-item'
+  div.getElementsByClassName('statusChange')[0].textContent = "Buy"
 }
 
 function attachListeners() {
@@ -50,8 +48,6 @@ function attachListeners() {
     var id = this.attributes["data-item"].value
 
     var listJson = $.get(window.location.pathname+'.json')
-
-    var calledDiv = this
 
     listJson.done(function(data) {
       var item = findId(id, data.grocery_items)

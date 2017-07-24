@@ -26,18 +26,3 @@ List Type: <%= @list.list_type.capitalize %>
     <% end %>
   </div>
 </ul>
-
-
-<script id="bought-item-template" type="text/x-handlebars-template">
-  <div class="finished-item">
-    {{item}}
-  </div>
-  <a href="#" class="statusChange" data-item=`{{item.id}}`>Un-Buy</a>
-</script>
-
-<script id="unbought-item-template" type="text/x-handlebars-template">
-  <div class="unfinished-item">
-    {{item}}
-  </div>
-  <a href="#" class="statusChange" data-item=`{{item.id}}`>Buy</a>
-</script>

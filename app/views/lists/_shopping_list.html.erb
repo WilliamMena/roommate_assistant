@@ -15,12 +15,11 @@
             <% if g.bought %>
               <%= content_tag(:div, g.item, :class => "finished-item") %>
               <!-- <%= link_to 'Un-buy', "/grocery_items/#{g.id}/unbuy", method: 'post' %> -->
-              <a href="#" class="statusChange" data-item="<%= g.id %>">Un-Buy</a>
             <% else %>
               <%= content_tag(:div, g.item, :class => "unfinished-item") %>
               <!-- <%= link_to 'Buy', "/grocery_items/#{g.id}/buy", method: 'post' %> -->
-              <a href="#" class="statusChange" data-item="<%= g.id %>">Buy</a>
             <% end %>
+            <button class="statusChange" data-item="<%= g.id %>"><%= g.bought ? "UnBuy" : "Buy" %></button>
           </div>
 
           <% if @list.user == current_user %>
