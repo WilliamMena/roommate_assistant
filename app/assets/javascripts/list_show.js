@@ -2,14 +2,6 @@ $(document).ready(function() {
   attachListeners();
 })
 
-
-// function findId(group) {
-//   debugger
-//   return function(group) {
-//     return group.id === group
-//   }
-// }
-
 function findId(id, group) {
   for (var i=0; i < group.length; i++) {
     if (group[i].id == id) {
@@ -27,14 +19,15 @@ function findDiv(id, group) {
 }
 
 function boughtDiv(item, div) {
-  div.getElementsByTagName('div')[0].className = 'finished-item'
-  div.getElementsByClassName('statusChange')[0].textContent = "UnBuy"
+  if (item.bought) {
+    div.getElementsByTagName('div')[0].className = 'finished-item'
+    div.getElementsByClassName('statusChange')[0].textContent = "UnBuy"
+  } else {
+    div.getElementsByTagName('div')[0].className = 'unfinished-item'
+    div.getElementsByClassName('statusChange')[0].textContent = "Buy"
+  }
 }
 
-function unboughtDiv(item, div) {
-  div.getElementsByTagName('div')[0].className = 'unfinished-item'
-  div.getElementsByClassName('statusChange')[0].textContent = "Buy"
-}
 
 function attachListeners() {
   // add a json view to the show pages so when trying to update each item for buying, the data is accessable.
@@ -44,9 +37,9 @@ function attachListeners() {
 
   $(".statusChange").on("click", function(e) {
     e.preventDefault()
+    // var authToken = $("input[name='authenticity_token']")[0].value
 
     var id = this.attributes["data-item"].value
-
     var listJson = $.get(window.location.pathname+'.json')
 
     listJson.done(function(data) {
@@ -59,14 +52,17 @@ function attachListeners() {
       }
 
       var itemSave = $.post(`/grocery_items/${id}/${buyPhrase}`)
+      debugger
+
 
       var div = findDiv(id, data.grocery_items)
       // if statement, if bought, one div, else other
-      item.bought ? boughtDiv(item, div) : unboughtDiv(item, div)
+      boughtDiv(item, div)
 
     })
 
     // var itemSave = $.ajax({
+
     //   type: 'POST',
     //   url: `/grocery_items/${id}/${buyPhrase}`
     // });
@@ -75,6 +71,17 @@ function attachListeners() {
     //   console.log("Hello")
     // })
   })
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

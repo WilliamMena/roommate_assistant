@@ -1,7 +1,7 @@
 
 <li>
         <!-- new item -->
-      <%= form_tag(grocery_items_path) do %>
+      <%= form_tag(grocery_items_path, id: 'new_grocery_item') do %>
         <%= hidden_field_tag 'list_id', @list.id %>
         <%= text_field_tag 'item', nil, placeholder: 'New Item...' %> <%= submit_tag 'New Item' %>
       <% end %>
