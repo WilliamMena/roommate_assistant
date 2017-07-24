@@ -18,6 +18,26 @@ function findId(id, group) {
   }
 }
 
+function findDiv(id, group) {
+  for (var i=0; i < group.length; i++) {
+    if (group[i].id == id) {
+      return document.getElementsByClassName("buy_options")[i];
+    }
+  }
+}
+
+function boughtDiv(item, div) {
+  var source   = $("#bought-item-template").html();
+  var template = Handlebars.compile(source);
+  div.innerHTML = template(item)
+}
+
+function unboughtDiv(item, div) {
+  var source   = $("#unbought-item-template").html();
+  var template = Handlebars.compile(source);
+  div.innerHTML = template(item)
+}
+
 function attachListeners() {
   // add a json view to the show pages so when trying to update each item for buying, the data is accessable.
   var values = {grocery_item: {
@@ -31,6 +51,7 @@ function attachListeners() {
 
     var listJson = $.get(window.location.pathname+'.json')
 
+    var calledDiv = this
 
     listJson.done(function(data) {
       var item = findId(id, data.grocery_items)
@@ -42,10 +63,11 @@ function attachListeners() {
       }
 
       var itemSave = $.post(`/grocery_items/${id}/${buyPhrase}`)
-      itemSave.done(function(data){
-        console.log("Hello")
-      })
-      debugger
+
+      var div = findDiv(id, data.grocery_items)
+      // if statement, if bought, one div, else other
+      item.bought ? boughtDiv(item, div) : unboughtDiv(item, div)
+
     })
 
     // var itemSave = $.ajax({
