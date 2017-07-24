@@ -72,7 +72,28 @@ function attachListeners() {
     // })
   })
 
+  $('#new_grocery_item').on("submit", function(e) {
+    e.preventDefault()
+    url = this.action
 
+    data = {
+      'authenticity_token': $("input[name='authenticity_token']")[0].value,
+      grocery_item: {
+        'item': $('#item')[0].value,
+        'bought': 'false'
+      },
+      'list_id': $('#list_id')[0].value
+    }
+    console.log(data)
+    // $.post(url, data)
+
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: data
+    })
+
+  })
 
 
 
