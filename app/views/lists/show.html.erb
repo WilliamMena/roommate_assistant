@@ -28,13 +28,14 @@ List Type: <%= @list.list_type.capitalize %>
 </ul>
 
 <script id="list-item-template" type="text/x-handlebars-template">
+  <br>
   <div class="item">
     <li>
       <div class="buy_options">
         <div class="unfinished-item">
-          <p>{{grocery_item.item}}</p>
+          {{item}}
         </div>
-        <button class="statusChange" data-item="{{list_id}}">Buy</button>
+        <button class="statusChange" data-item="{{id}}">Buy</button>
       </div>
       <% if @list.user == current_user %>
         <div class="owner_options">

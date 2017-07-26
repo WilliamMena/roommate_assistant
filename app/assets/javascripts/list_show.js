@@ -52,7 +52,6 @@ function attachListeners() {
       }
 
       var itemSave = $.post(`/grocery_items/${id}/${buyPhrase}`)
-      debugger
 
 
       var div = findDiv(id, data.grocery_items)
@@ -91,12 +90,15 @@ function attachListeners() {
       type: "POST",
       url: url,
       data: data,
-      success: function() {
+      success: function(success_data) {
         // have to check if I can tell if the current user is the owner of the list at this point
+        data.grocery_item.id = success_data.grocery_id
         var source   = $("#list-item-template").html();
         var template = Handlebars.compile(source);
         debugger
-        template(data)
+        $('#list_items')[0].innerHTML += template(data.grocery_item)
+        $(".statusChange").off('click')
+        attachListeners();
       }
     })
 

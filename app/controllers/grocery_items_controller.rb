@@ -6,7 +6,7 @@ class GroceryItemsController < ApplicationController
     list = List.find(params[:list_id])
     list.grocery_items.build(grocery_params)
     list.save
-    render :json => {:status => :ok}
+    render :json => {:status => :ok, :grocery_id => list.grocery_items.last.id}
     # redirect_to user_list_path(list.user.id, list.id)
   end
 
