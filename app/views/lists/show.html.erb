@@ -7,7 +7,8 @@ List Type: <%= @list.list_type.capitalize %>
 <% if @list.user == current_user %>
     <!-- Edit functions only appear if current user owns this list -->
   <%= link_to 'Edit List', edit_list_path(@list) %>
-  <%= link_to 'Delete Post', list_path(@list), method: :delete %>
+  <%= link_to 'Delete List', list_path(@list), method: :delete %>
+  <button id="next_list" data-item="<%= @list.id %>">Next List</button>
 <% end %>
 
 
@@ -39,10 +40,34 @@ List Type: <%= @list.list_type.capitalize %>
       </div>
       <% if @list.user == current_user %>
         <div class="owner_options">
-          <br><a href="#">Edit Item</a>
-          <br><a href="#">Delete Item</a>
+          <br><a href="/grocery_items/{{id}}/edit">Edit Item</a>
+          <br><a href="/grocery_items/{{id}}" data-confirm="Are you sure?" data-method="delete">Delete Item</a>
         </div>
       <% end %>
     </li>
   </div>
+</script>
+
+
+<script id="list-template" type="text/x-handlebars-template">
+  <h1>{{title}}</h1>
+  <p>
+    Create By: {{user.name}}
+    List Type: {{list_type}}
+  </p>
+  <a href="/lists/{{id}}/edit">Edit List</a>
+  <a href="/lists/{{id}}" data-confirm="Are you sure?" data-method="delete">Delete List</a>
+  <button id="next_list" data-item="{{id}}">Next List</button>
+
+  <ul>
+    <div id="list_items">
+
+      <form id="new_grocery_item" action="/grocery_items" accept-charset="UTF-8" method="post">
+        <input type="hidden" name="authenticity_token" value="{{authenticity_token}}">
+        <input type="text" id="item" placeholder="New Item...">
+        <input type="hidden" name="list_id" id="list_id" value="{{id}}">
+        <input type="submit" value="New Item">
+      </form>
+    </div>
+  </ul>
 </script>
