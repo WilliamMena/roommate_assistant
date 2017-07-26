@@ -90,7 +90,14 @@ function attachListeners() {
     $.ajax({
       type: "POST",
       url: url,
-      data: data
+      data: data,
+      success: function() {
+        // have to check if I can tell if the current user is the owner of the list at this point
+        var source   = $("#list-item-template").html();
+        var template = Handlebars.compile(source);
+        debugger
+        template(data)
+      }
     })
 
   })

@@ -4,9 +4,10 @@ class GroceryItemsController < ApplicationController
 
   def create
     list = List.find(params[:list_id])
-    list.grocery_items.build(item: params[:item])
+    list.grocery_items.build(grocery_params)
     list.save
-    redirect_to user_list_path(list.user.id, list.id)
+    render :json => {:status => :ok}
+    # redirect_to user_list_path(list.user.id, list.id)
   end
 
   def edit
