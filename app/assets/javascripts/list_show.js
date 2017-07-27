@@ -113,24 +113,26 @@ function attachListeners() {
 
 
   $('#next_list').on('click', function(e) {
-    var partialSource = $('#grocery-item-template').html();
-    Handlebars.registerPartial('listItem', partialSource)
-    var source   = $("#grocery-item-template").html();
-    var template = Handlebars.compile(source);
     // var currentButton = this
 
     // have to figure out how to have id available inside of the allLists scope
-    var id = $("#list_id")[0].value
     var allLists = $.get('/lists.json')
+
     allLists.done(function(data) {
-      var partialSource = $('#grocery-item-template').html();
-      Handlebars.registerPartial('listItem', partialSource)
-      var source   = $("#grocery-list-template").html();
-      var template = Handlebars.compile(source);
-
-
-      var id = $("#list_id")[0].value
+      var id = $('#next_list').attr('data-item')
       var list = nextLink(id, data)
+      if (list.list_type == "shopping") {
+        var partialSource = $('#grocery-item-template').html();
+        Handlebars.registerPartial('listItem', partialSource)
+        var source   = $("#grocery-list-template").html();
+        var template = Handlebars.compile(source);
+      } else {
+        var partialSource = $('#chore-item-template').html();
+        Handlebars.registerPartial('listItem', partialSource)
+        var source   = $("#chore-list-template").html();
+        var template = Handlebars.compile(source);
+      }
+
 
       $('#list').replaceWith(template(list))
       $("#next_list").off('click')

@@ -71,65 +71,70 @@
 
 
 <script id="grocery-list-template" type="text/x-handlebars-template">
-  <h1>{{title}}</h1>
-  <p>
-    Create By: {{user.name}}
-    List Type: {{list_type}}
-  </p>
-  <!-- <% if @list.user == current_user %> -->
-    <!-- <a href="/lists/{{id}}/edit">Edit List</a>
-    <a href="/lists/{{id}}" data-confirm="Are you sure?" data-method="delete">Delete List</a> -->
-    <button id="next_list" data-item="{{id}}">Next List</button>
-  <!-- <% end %> -->
+  <div id="list"
+    <h1>{{title}}</h1>
+    <p>
+      Create By: {{user.name}}
+      List Type: {{list_type}}
+    </p>
+    <!-- <% if @list.user == current_user %> -->
+      <!-- <a href="/lists/{{id}}/edit">Edit List</a>
+      <a href="/lists/{{id}}" data-confirm="Are you sure?" data-method="delete">Delete List</a> -->
+      <button id="next_list" data-item="{{id}}">Next List</button>
+    <!-- <% end %> -->
 
-  <ul>
-    <div id="list_items">
-      <!-- <form id="new_grocery_item" action="/grocery_items" accept-charset="UTF-8" method="post">
-        <input type="hidden" name="authenticity_token" value="{{authenticity_token}}">
-        <input type="text" id="item" placeholder="New Item...">
-        <input type="hidden" name="list_id" id="list_id" value="{{id}}">
-        <input type="submit" value="New Item">
-      </form> -->
-      {{#each grocery_items}}
-        <!-- call the partial -->
-        {{> listItem}}
-      {{/each}}
-    </div>
-  </ul>
+    <ul>
+      <div id="list_items">
+        <!-- <form id="new_grocery_item" action="/grocery_items" accept-charset="UTF-8" method="post">
+          <input type="hidden" name="authenticity_token" value="{{authenticity_token}}">
+          <input type="text" id="item" placeholder="New Item...">
+          <input type="hidden" name="list_id" id="list_id" value="{{id}}">
+          <input type="submit" value="New Item">
+        </form> -->
+        {{#each grocery_items}}
+          <!-- call the partial -->
+          {{> listItem}}
+        {{/each}}
+      </div>
+    </ul>
+  </div>
 </script>
 
 <script id="chore-list-template" type="text/x-handlebars-template">
-  <h1>{{title}}</h1>
-  <p>
-    Create By: {{user.name}}
-    List Type: {{list_type}}
-  </p>
-  <% if @list.user == current_user %>
-    <a href="/lists/{{id}}/edit">Edit List</a>
-    <a href="/lists/{{id}}" data-confirm="Are you sure?" data-method="delete">Delete List</a>
+  <div id="list"
+    <h1>{{title}}</h1>
+    <p>
+      Create By: {{user.name}}
+      List Type: {{list_type}}
+    </p>
     <button id="next_list" data-item="{{id}}">Next List</button>
-  <% end %>
 
-  <ul>
-    <div id="list_items">
-      <form id="new_chores" action="/chores" accept-charset="UTF-8" method="post">
-        <input type="hidden" name="authenticity_token" value="{{authenticity_token}}">
-        <input type="text" id="chore" placeholder="New Chore...">
-        <input type="hidden" name="list_id" id="list_id" value="{{id}}">
-        <input type="submit" value="New Chore">
-      </form>
+    <ul>
+      <div id="list_items">
+        {{#each chores}}
+          <!-- call the partial -->
+          {{> listItem}}
+        {{/each}}
+      </div>
+    </ul>
+  </div>
+</script>
 
-      <%= form_tag(chores_path) do %>
-          <!-- new item -->
-        <%= hidden_field_tag 'list_id', @list.id %>
-        <%= text_field_tag 'chore', nil, placeholder: 'New Chore...' %>
-        <%= collection_select :user, :user_id, @list.assign, :id, :name, {include_blank: true}  %>
-        <%= submit_tag 'New Chore' %>
-      <% end %>
-      {{#each chores}}
-        <!-- call the partial -->
-        {{> choreListItem}}
-      {{/each}}
-    </div>
-  </ul>
+<script id="chore-item-template" type="text/x-handlebars-template">
+  <br>
+  <div class="item">
+    <li>
+      <div class="buy_options">
+        {{#if completed}}
+        <div class="finished-item">
+          {{name}}
+        </div>
+        {{else}}
+        <div class="unfinished-item">
+          {{name}}
+        </div>
+        {{/if}}
+      </div>
+    </li>
+  </div>
 </script>

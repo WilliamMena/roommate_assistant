@@ -11,23 +11,25 @@
     </li>
 
     <br>
-    <% @list.chores.each do |c| %>
-    <li>
-      <% if c.completed? %>
-        <%= content_tag(:div, c.name, :id => "finished-item") %>
-        Assigned to: <%= c.user.present? ? c.user.name : 'No One' %>
-        <br><%= link_to 'Incomplete', "/chores/#{c.id}/incomplete", method: 'post' %>
-      <% else %>
-        <%= content_tag(:div, c.name, :id => "unfinished-item") %>
-        Assigned to: <%= c.user.present? ? c.user.name : 'No One' %>
-        <br><%= link_to 'Complete', "/chores/#{c.id}/complete", method: 'post' %>
-      <% end %>
+    <div id="chores">
+      <% @list.chores.each do |c| %>
+      <li>
+        <% if c.completed? %>
+          <%= content_tag(:div, c.name, :class => "finished-item") %>
+          Assigned to: <%= c.user.present? ? c.user.name : 'No One' %>
+          <br><%= link_to 'Incomplete', "/chores/#{c.id}/incomplete", method: 'post' %>
+        <% else %>
+          <%= content_tag(:div, c.name, :class => "unfinished-item") %>
+          Assigned to: <%= c.user.present? ? c.user.name : 'No One' %>
+          <br><%= link_to 'Complete', "/chores/#{c.id}/complete", method: 'post' %>
+        <% end %>
 
 
-      <% if @list.user == current_user %>
-        <br><%= link_to "Edit Item", edit_chore_path(c) %>
-        <br><%= link_to "Delete Item", "/chores/#{c.id}", method: 'delete' %>
+        <% if @list.user == current_user %>
+          <br><%= link_to "Edit Item", edit_chore_path(c) %>
+          <br><%= link_to "Delete Item", "/chores/#{c.id}", method: 'delete' %>
+        <% end %>
+      </li>
+      <br>
       <% end %>
-    </li>
-    <br>
-    <% end %>
+    </div>
