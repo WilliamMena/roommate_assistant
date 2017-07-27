@@ -15,7 +15,7 @@
     <li>
       <% if c.completed? %>
         <%= content_tag(:div, c.name, :id => "finished-item") %>
-        Assigned to: <%= c.user.present? ? c.user.name : 'No One' %> 
+        Assigned to: <%= c.user.present? ? c.user.name : 'No One' %>
         <br><%= link_to 'Incomplete', "/chores/#{c.id}/incomplete", method: 'post' %>
       <% else %>
         <%= content_tag(:div, c.name, :id => "unfinished-item") %>

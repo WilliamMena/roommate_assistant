@@ -29,6 +29,25 @@ function boughtDiv(item, div) {
 }
 
 
+function nextLink(id, array) {
+  for (i = 0; i < array.length; i++) {
+    if (array[i].id == id) {
+      var next = i+1
+    }
+  }
+  if (array[next]) {
+    return array[next]
+  } else {
+    return false
+  }
+}
+
+
+
+
+
+
+
 function attachListeners() {
   // add a json view to the show pages so when trying to update each item for buying, the data is accessable.
   var values = {grocery_item: {
@@ -59,16 +78,6 @@ function attachListeners() {
       boughtDiv(item, div)
 
     })
-
-    // var itemSave = $.ajax({
-
-    //   type: 'POST',
-    //   url: `/grocery_items/${id}/${buyPhrase}`
-    // });
-    // itemSave.done(function(data) {
-    //   debugger
-    //   console.log("Hello")
-    // })
   })
 
   $('#new_grocery_item').on("submit", function(e) {
@@ -83,7 +92,6 @@ function attachListeners() {
       },
       'list_id': $('#list_id')[0].value
     }
-    console.log(data)
     // $.post(url, data)
 
     $.ajax({
@@ -93,9 +101,8 @@ function attachListeners() {
       success: function(success_data) {
         // have to check if I can tell if the current user is the owner of the list at this point
         data.grocery_item.id = success_data.grocery_id
-        var source   = $("#list-item-template").html();
+        var source   = $("#grocery-item-template").html();
         var template = Handlebars.compile(source);
-        debugger
         $('#list_items')[0].innerHTML += template(data.grocery_item)
         $(".statusChange").off('click')
         attachListeners();
@@ -105,6 +112,34 @@ function attachListeners() {
   })
 
 
+  $('#next_list').on('click', function(e) {
+    var partialSource = $('#grocery-item-template').html();
+    Handlebars.registerPartial('listItem', partialSource)
+    var source   = $("#grocery-item-template").html();
+    var template = Handlebars.compile(source);
+    // var currentButton = this
+
+    // have to figure out how to have id available inside of the allLists scope
+    var id = $("#list_id")[0].value
+    var allLists = $.get('/lists.json')
+    allLists.done(function(data) {
+      var partialSource = $('#grocery-item-template').html();
+      Handlebars.registerPartial('listItem', partialSource)
+      var source   = $("#grocery-list-template").html();
+      var template = Handlebars.compile(source);
+
+
+      var id = $("#list_id")[0].value
+      var list = nextLink(id, data)
+
+      $('#list').replaceWith(template(list))
+      // need to create handlebars chore template
+    })
+
+
+    // have to find out how to check users lists, and call the next one in the array
+  })
+
 
 
 
@@ -113,15 +148,3 @@ function attachListeners() {
 
 
 }
-
-
-
-// function buyGrocery() {
-//   // hijack the buy link with an event listener then have it change the value
-//   debugger
-//   var gameSave = $.post('/grocery_items/:id', values)
-//   gameSave.done(function(data) {
-//     debugger
-//   })
-//   // either go to the get route that will change the buy to unbuy, or adjust the actual database to present the opposite of what it currently is right now.
-// }
