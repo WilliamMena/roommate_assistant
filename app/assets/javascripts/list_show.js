@@ -101,7 +101,7 @@ function attachListeners() {
       success: function(success_data) {
         // have to check if I can tell if the current user is the owner of the list at this point
         data.grocery_item.id = success_data.grocery_id
-        var source   = $("#grocery-item-template").html();
+        var source   = $("#new-grocery-item-template").html();
         var template = Handlebars.compile(source);
         $('#list_items')[0].innerHTML += template(data.grocery_item)
         $(".statusChange").off('click')
@@ -133,6 +133,8 @@ function attachListeners() {
       var list = nextLink(id, data)
 
       $('#list').replaceWith(template(list))
+      $("#next_list").off('click')
+      attachListeners();
       // need to create handlebars chore template
     })
 

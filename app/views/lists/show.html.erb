@@ -9,7 +9,7 @@
       <!-- Edit functions only appear if current user owns this list -->
     <%= link_to 'Edit List', edit_list_path(@list) %>
     <%= link_to 'Delete List', list_path(@list), method: :delete %>
-    <button id="next_list" data-item="<%= @list.id %>">Next List</button>
+    <button id="next_list" data-item="<%= @list.id %>">View Next List</button>
   <% end %>
 
 
@@ -29,7 +29,8 @@
     </div>
   </ul>
 </div>
-<script id="grocery-item-template" type="text/x-handlebars-template">
+
+<script id="new-grocery-item-template" type="text/x-handlebars-template">
   <br>
   <div class="item">
     <li>
@@ -49,6 +50,25 @@
   </div>
 </script>
 
+<script id="grocery-item-template" type="text/x-handlebars-template">
+  <br>
+  <div class="item">
+    <li>
+      <div class="buy_options">
+        {{#if bought}}
+        <div class="finished-item">
+          {{item}}
+        </div>
+        {{else}}
+        <div class="unfinished-item">
+          {{item}}
+        </div>
+        {{/if}}
+      </div>
+    </li>
+  </div>
+</script>
+
 
 <script id="grocery-list-template" type="text/x-handlebars-template">
   <h1>{{title}}</h1>
@@ -56,20 +76,20 @@
     Create By: {{user.name}}
     List Type: {{list_type}}
   </p>
-  <% if @list.user == current_user %>
-    <a href="/lists/{{id}}/edit">Edit List</a>
-    <a href="/lists/{{id}}" data-confirm="Are you sure?" data-method="delete">Delete List</a>
+  <!-- <% if @list.user == current_user %> -->
+    <!-- <a href="/lists/{{id}}/edit">Edit List</a>
+    <a href="/lists/{{id}}" data-confirm="Are you sure?" data-method="delete">Delete List</a> -->
     <button id="next_list" data-item="{{id}}">Next List</button>
-  <% end %>
+  <!-- <% end %> -->
 
   <ul>
     <div id="list_items">
-      <form id="new_grocery_item" action="/grocery_items" accept-charset="UTF-8" method="post">
+      <!-- <form id="new_grocery_item" action="/grocery_items" accept-charset="UTF-8" method="post">
         <input type="hidden" name="authenticity_token" value="{{authenticity_token}}">
         <input type="text" id="item" placeholder="New Item...">
         <input type="hidden" name="list_id" id="list_id" value="{{id}}">
         <input type="submit" value="New Item">
-      </form>
+      </form> -->
       {{#each grocery_items}}
         <!-- call the partial -->
         {{> listItem}}
