@@ -126,18 +126,22 @@ function attachListeners() {
         Handlebars.registerPartial('listItem', partialSource)
         var source   = $("#grocery-list-template").html();
         var template = Handlebars.compile(source);
-      } else {
+
+        $('#list').replaceWith(template(list))
+        $("#next_list").off('click')
+        attachListeners();
+      } else if (list.list_type == "chore") {
         var partialSource = $('#chore-item-template').html();
         Handlebars.registerPartial('listItem', partialSource)
         var source   = $("#chore-list-template").html();
         var template = Handlebars.compile(source);
+
+        $('#list').replaceWith(template(list))
+        $("#next_list").off('click')
+        attachListeners();
+      } else {
+        $('#next_list').replaceWith("This is your last viewable list.")
       }
-
-
-      $('#list').replaceWith(template(list))
-      $("#next_list").off('click')
-      attachListeners();
-      // need to create handlebars chore template
     })
 
 
