@@ -72,10 +72,13 @@
 
 <script id="grocery-list-template" type="text/x-handlebars-template">
   <div id="list"
+    <h1></h1>
     <h1>{{title}}</h1>
     <p>
       Create By: {{user.name}}
       List Type: {{list_type}}
+      <br>
+      <sub><a href="/users/{{user.id}}/lists/{{id}}">For full functionality, click here.</a></sub>
     </p>
     <!-- <% if @list.user == current_user %> -->
       <!-- <a href="/lists/{{id}}/edit">Edit List</a>
@@ -85,12 +88,6 @@
 
     <ul>
       <div id="list_items">
-        <!-- <form id="new_grocery_item" action="/grocery_items" accept-charset="UTF-8" method="post">
-          <input type="hidden" name="authenticity_token" value="{{authenticity_token}}">
-          <input type="text" id="item" placeholder="New Item...">
-          <input type="hidden" name="list_id" id="list_id" value="{{id}}">
-          <input type="submit" value="New Item">
-        </form> -->
         {{#each grocery_items}}
           <!-- call the partial -->
           {{> listItem}}
@@ -102,10 +99,13 @@
 
 <script id="chore-list-template" type="text/x-handlebars-template">
   <div id="list"
+    <h1></h1>
     <h1>{{title}}</h1>
     <p>
       Create By: {{user.name}}
       List Type: {{list_type}}
+      <br>
+      <sub><a href="/users/{{user.id}}/lists/{{id}}">For full functionality, click here.</a></sub>
     </p>
     <button id="next_list" data-item="{{id}}">Next List</button>
 
