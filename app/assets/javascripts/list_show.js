@@ -1,6 +1,19 @@
+function List() {}
+
 $(document).ready(function() {
   attachListeners();
+  // List.partialSource = $('#grocery-item-template').html();
+  // Handlebars.registerPartial('listItem', List.partialSource)
+  List.source   = $("#grocery-list-template").html();
+  List.template = Handlebars.compile(List.source);
 })
+
+
+List.renderGroceryItem = function(){
+  return List.template(this)
+}
+
+
 
 function findId(id, group) {
   for (var i=0; i < group.length; i++) {
@@ -121,15 +134,17 @@ function attachListeners() {
     allLists.done(function(data) {
       var id = $('#next_list').attr('data-item')
       var list = nextLink(id, data)
+      Object.setPrototypeOf(list, List)
       if (list.list_type == "shopping") {
         var partialSource = $('#grocery-item-template').html();
         Handlebars.registerPartial('listItem', partialSource)
-        var source   = $("#grocery-list-template").html();
-        var template = Handlebars.compile(source);
-
-        $('#list').replaceWith(template(list))
+        // var source   = $("#grocery-list-template").html();
+        // var template = Handlebars.compile(source);
+        // $('#list').replaceWith(template(list))
+        $('#list').replaceWith(list.renderGroceryItem())
         $("#next_list").off('click')
         attachListeners();
+
       } else if (list.list_type == "chore") {
         var partialSource = $('#chore-item-template').html();
         Handlebars.registerPartial('listItem', partialSource)
@@ -147,12 +162,4 @@ function attachListeners() {
 
     // have to find out how to check users lists, and call the next one in the array
   })
-
-
-
-
-
-
-
-
 }
