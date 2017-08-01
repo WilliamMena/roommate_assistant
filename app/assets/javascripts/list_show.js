@@ -1,6 +1,6 @@
 function List() {}
 
-$(document).ready(function() {
+$().ready(function() {
   attachListeners();
   // List.partialSource = $('#grocery-item-template').html();
   // Handlebars.registerPartial('listItem', List.partialSource)
