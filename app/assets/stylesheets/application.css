@@ -37,7 +37,7 @@ a:hover {
 }
 
 footer {
-    position:absolute;
+    position:relative;
     text-align: center;
     border-top: thin solid #e6e6e6;
     bottom:0;
