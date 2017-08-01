@@ -4,13 +4,13 @@ $(document).ready(function() {
   attachListeners();
   // List.partialSource = $('#grocery-item-template').html();
   // Handlebars.registerPartial('listItem', List.partialSource)
-  List.source   = $("#grocery-list-template").html();
-  List.template = Handlebars.compile(List.source);
+  List.groceryListSource   = $("#grocery-list-template").html();
+  List.groceryListTemplate = Handlebars.compile(List.groceryListSource);
 })
 
 
 List.renderGroceryItem = function(){
-  return List.template(this)
+  return List.groceryListTemplate(this)
 }
 
 
