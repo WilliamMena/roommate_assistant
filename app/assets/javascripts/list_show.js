@@ -6,6 +6,8 @@ $(document).ready(function() {
   // Handlebars.registerPartial('listItem', List.partialSource)
   List.groceryListSource   = $("#grocery-list-template").html();
   List.groceryListTemplate = Handlebars.compile(List.groceryListSource);
+  List.choreListSource   = $("#chore-list-template").html();
+  List.choreListTemplate = Handlebars.compile(List.choreListSource);
 })
 
 
@@ -13,7 +15,9 @@ List.renderGroceryItem = function(){
   return List.groceryListTemplate(this)
 }
 
-
+List.renderChoreItem = function(){
+  return List.choreListTemplate(this)
+}
 
 function findId(id, group) {
   for (var i=0; i < group.length; i++) {
@@ -148,10 +152,10 @@ function attachListeners() {
       } else if (list.list_type == "chore") {
         var partialSource = $('#chore-item-template').html();
         Handlebars.registerPartial('listItem', partialSource)
-        var source   = $("#chore-list-template").html();
-        var template = Handlebars.compile(source);
+        // var source   = $("#chore-list-template").html();
+        // var template = Handlebars.compile(source);
 
-        $('#list').replaceWith(template(list))
+        $('#list').replaceWith(list.renderChoreItem())
         $("#next_list").off('click')
         attachListeners();
       } else {
