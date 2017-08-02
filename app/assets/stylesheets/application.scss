@@ -22,14 +22,30 @@ body {
 [class^="col-md"] {
     // background: white;
     border-radius: .5em;
-    text-align: center;
     // border: 1px;
     border-color: red;
+}
+
+.col-md-4 {
+  text-align: center;
+}
+
+.col-md-8 {
+  text-align: center;
+  padding: 2em;
+}
+
+.banner {
+  text-align: center;
 }
 
 .finished-item {
   color: red;
   text-decoration: line-through;
+}
+
+ul {
+  list-style-type: none;
 }
 
 .nav_bar {

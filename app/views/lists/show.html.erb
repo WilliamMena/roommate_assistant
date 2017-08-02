@@ -1,31 +1,37 @@
-<div id='list'>
-  <h1><%= @list.title %></h1>
+<div class="container" id='list'>
+  <div class="row">
+    <div class="col-md-4">
+      <h1><%= @list.title %></h1>
 
-  Created By: <%= @list.user.name %>
-  <br>
-  List Type: <%= @list.list_type.capitalize %>
-  <br><br>
-  <% if @list.user == current_user %>
+      Created By: <%= @list.user.name %>
+      <br>
+      List Type: <%= @list.list_type.capitalize %>
+      <br><br>
+      <% if @list.user == current_user %>
       <!-- Edit functions only appear if current user owns this list -->
-    <%= link_to 'Edit List', edit_list_path(@list) %>
-    <%= link_to 'Delete List', list_path(@list), method: :delete %>
-    <button id="next_list" data-item="<%= @list.id %>">View Next List</button>
-  <% end %>
-
-
-  <ul>
-    <div id="list_items">
-      <% if @list.shopping? %>
-        <!-- show shopping list -->
-
-        <%= render partial: 'shopping_list' %>
-
-      <% elsif @list.chore? %>
-        <!-- show chore list -->
-
-        <%= render partial: 'chores_list' %>
-
+      <%= link_to 'Edit List', edit_list_path(@list) %>
+      <%= link_to 'Delete List', list_path(@list), method: :delete %>
+      <button id="next_list" data-item="<%= @list.id %>">View Next List</button>
       <% end %>
     </div>
-  </ul>
+
+
+    <div class="col-md-8">
+      <ul>
+        <div id="list_items">
+          <% if @list.shopping? %>
+          <!-- show shopping list -->
+
+          <%= render partial: 'shopping_list' %>
+
+          <% elsif @list.chore? %>
+          <!-- show chore list -->
+
+          <%= render partial: 'chores_list' %>
+
+          <% end %>
+        </div>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -3,30 +3,31 @@
         <!-- new item -->
       <%= form_tag(grocery_items_path, id: 'new_grocery_item') do %>
         <%= hidden_field_tag 'list_id', @list.id %>
-        <%= text_field_tag 'item', nil, placeholder: 'New Item...' %> <%= submit_tag 'New Item' %>
+        <%= text_field_tag 'item', nil, placeholder: 'New Item...' %><%= submit_tag 'New Item' %>
       <% end %>
     </li>
+    <ul>
+      <% @list.grocery_items.each do |g| %>
+        <br>
+        <div class="item">
+          <li>
+            <div class="buy_options">
+              <% if g.bought %>
+                <%= content_tag(:div, g.item, :class => "finished-item") %>
+                <!-- <%= link_to 'Un-buy', "/grocery_items/#{g.id}/unbuy", method: 'post' %> -->
+              <% else %>
+                <%= content_tag(:div, g.item, :class => "unfinished-item") %>
+                <!-- <%= link_to 'Buy', "/grocery_items/#{g.id}/buy", method: 'post' %> -->
+              <% end %>
+              <button class="statusChange" data-item="<%= g.id %>"><%= g.bought ? "UnBuy" : "Buy" %></button>
+            </div>
 
-    <% @list.grocery_items.each do |g| %>
-      <br>
-      <div class="item">
-        <li>
-          <div class="buy_options">
-            <% if g.bought %>
-              <%= content_tag(:div, g.item, :class => "finished-item") %>
-              <!-- <%= link_to 'Un-buy', "/grocery_items/#{g.id}/unbuy", method: 'post' %> -->
-            <% else %>
-              <%= content_tag(:div, g.item, :class => "unfinished-item") %>
-              <!-- <%= link_to 'Buy', "/grocery_items/#{g.id}/buy", method: 'post' %> -->
+            <% if @list.user == current_user %>
+              <div class="owner_options">
+                <br><%= link_to "Edit Item", edit_grocery_item_path(g) %>
+                <br><%= link_to "Delete Item", "/grocery_items/#{g.id}", method: 'delete' %>
             <% end %>
-            <button class="statusChange" data-item="<%= g.id %>"><%= g.bought ? "UnBuy" : "Buy" %></button>
-          </div>
-
-          <% if @list.user == current_user %>
-            <div class="owner_options">
-              <br><%= link_to "Edit Item", edit_grocery_item_path(g) %>
-              <br><%= link_to "Delete Item", "/grocery_items/#{g.id}", method: 'delete' %>
-          <% end %>
-        </li>
-      </div>
-    <% end %>
+          </li>
+        </div>
+      <% end %>
+    </ul>
