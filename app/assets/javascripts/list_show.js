@@ -1,4 +1,13 @@
-function List() {}
+function List(list) {
+  this.id = list.id;
+  this.title = list.title;
+  this.user_id = list.user_id;
+  this.list_type = list.list_type;
+  this.viewers = list.viewers;
+  this.user = list.user;
+  this.grocery_items = list.grocery_items;
+  this.chores = list.chores;
+}
 
 $().ready(function() {
   attachListeners();
@@ -11,11 +20,11 @@ $().ready(function() {
 })
 
 
-List.renderGroceryItem = function(){
+List.prototype.renderGroceryItem = function(){
   return List.groceryListTemplate(this)
 }
 
-List.renderChoreItem = function(){
+List.prototype.renderChoreItem = function(){
   return List.choreListTemplate(this)
 }
 
@@ -137,8 +146,9 @@ function attachListeners() {
 
     allLists.done(function(data) {
       var id = $('#next_list').attr('data-item')
-      var list = nextLink(id, data)
-      Object.setPrototypeOf(list, List)
+      var listData = nextLink(id, data)
+      let list = new List(listData)
+      // Object.setPrototypeOf(list, List)
       if (list.list_type == "shopping") {
         var partialSource = $('#grocery-item-template').html();
         Handlebars.registerPartial('listItem', partialSource)

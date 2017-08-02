@@ -10,10 +10,22 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
 
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+body {
+  // background-color: #64b6db;
+}
+
+[class^="col-md"] {
+    // background: white;
+    border-radius: .5em;
+    text-align: center;
+    // border: 1px;
+    border-color: red;
+}
 
 .finished-item {
   color: red;
@@ -28,12 +40,16 @@
   padding: 5px;
 }
 
+a {
+  text-decoration:none;
+}
+
 a:visited {
   color: blue;
 }
 
 a:hover {
-  color: purple;
+  text-decoration: underline;
 }
 
 footer {

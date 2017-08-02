@@ -1,47 +1,58 @@
-<h1>Home Page</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Home Page</h1>
+    </div>
+  </div>
 
-
-
-<a href="/lists"><h3>Your lists</h3></a>
-<ul>
-  <% if !@lists.empty? %>
-    <% @lists.each do |l| %>
-      <%= link_to l.title, user_list_path(current_user.id, l.id)  %>
-      <br>
-      <sub>Type: <%= l.list_type.capitalize %></sub>
-      <br></br>
-    <% end %>
-  <% else %>
-    <p>No list's available at the moment. <%= link_to 'Create a List!', new_list_path %><!-- link_to creating a list --></p>
-  <% end %>
-</ul>
-
-<a href="/lists/shared"><h3>Lists you're shared on</h3></a>
-<ul>
-  <% if current_user.viewable_lists.empty? %>
-    No lists you're shared on
-  <% else %>
-    <% current_user.viewable_lists.each do |l| %>
-      <%= link_to l.title, user_list_path(l.user, l) %> - <%= l.user.name %>
-      <br></br>
-    <% end %>
-  <% end %>
-</ul>
-
-<h3>Pending Roommates</h3>
-<ul>
-  <% if !@pending.empty? %>
-    <% @pending.each do |u| %>
-      <%= u.name %>
-      <br>
-      <%= u.email %>
-        <%= form_tag '/roommates' do %>
-          <%= hidden_field_tag :roommate_id, "#{u.id}" %>
-          <%= submit_tag "Add Roommate" %>
+  <div class="row">
+    <div class="col-md-5">
+      <a href="/lists"><h3>Your lists</h3></a>
+      <ul>
+        <% if !@lists.empty? %>
+        <% @lists.each do |l| %>
+        <%= link_to l.title, user_list_path(current_user.id, l.id)  %>
+        <br>
+        <sub>Type: <%= l.list_type.capitalize %></sub>
+        <br></br>
         <% end %>
-      <br></br>
-    <% end %>
-  <% else %>
-    <p>No new requests</p>
-  <% end %>
-</ul>
+        <% else %>
+        <p>No list's available at the moment. <%= link_to 'Create a List!', new_list_path %><!-- link_to creating a list --></p>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="col-md-5">
+      <a href="/lists/shared"><h3>Lists you're shared on</h3></a>
+      <ul>
+        <% if current_user.viewable_lists.empty? %>
+        No lists you're shared on
+        <% else %>
+        <% current_user.viewable_lists.each do |l| %>
+        <%= link_to l.title, user_list_path(l.user, l) %> - <%= l.user.name %>
+        <br></br>
+        <% end %>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-md-2">
+      <h3>Pending Roommates</h3>
+      <ul>
+        <% if !@pending.empty? %>
+        <% @pending.each do |u| %>
+        <%= u.name %>
+        <br>
+        <%= u.email %>
+        <%= form_tag '/roommates' do %>
+        <%= hidden_field_tag :roommate_id, "#{u.id}" %>
+        <%= submit_tag "Add Roommate" %>
+        <% end %>
+        <br></br>
+        <% end %>
+        <% else %>
+        <p>No new requests</p>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
