@@ -1,14 +1,20 @@
-<h1>Your roommates</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Your roommates</h1>
 
-<p><%= link_to 'Add more roommates', users_path %></p>
+      <p><%= link_to 'Add more roommates', users_path %></p>
 
-<ul>
-<% @users.each do |u| %>
-  Name: <%= u.name %>
-  <br>
-  Email: <%= u.email %>
-  <br>
-  <%= link_to "Remove Roommate", roommate_path(u), method: :delete %>
-  <br></br>
-<% end %>
-</ul>
+      <ul>
+        <% @users.each do |u| %>
+        Name: <%= u.name %>
+        <br>
+        Email: <%= u.email %>
+        <br>
+        <%= link_to "Remove Roommate", roommate_path(u), method: :delete %>
+        <br></br>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

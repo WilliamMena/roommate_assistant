@@ -2,7 +2,7 @@
   <%= l.label :title %>
   <%= l.text_field :title %>
   <br></br>
-  
+
   <% if params[:action] != "edit" %>
     <sub>Remember to choose the appropriate list type.</sub>
     <br>
@@ -28,10 +28,10 @@
     <br></br>
 
   <% end %>
-  
+
   <%= l.submit %>
 
   <br></br>
-    Viewable to: <%= l.collection_check_boxes :viewer_ids, current_user.actual_roommates, :id, :name %>
+    <p>Viewable to: <%= l.collection_check_boxes :viewer_ids, current_user.actual_roommates, :id, :name %></p>
   <br>
 <% end %>

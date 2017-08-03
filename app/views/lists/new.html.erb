@@ -1,14 +1,19 @@
-<h1>New List</h1>
+<div class="row">
+  <div class="col-md-6">
 
-<%= render '/layouts/list' %>
+    <h1>New List</h1>
 
-<div id="lists"><a href="#" onclick="showLists(); return false;">Get Repos</a></div>
+    <%= render '/layouts/list' %>
+  </div>
+
+  <div class="col-md-6">
+    <div id="lists"><a href="#" onclick="showLists(); return false;">Get your repos</a></div>
 
 
-
-
+  </div>
+</div>
 <script id="lists-template" type="text/x-handlebars-template">
   {{#each this}}
-    <p><a href="/users/{{user.id}}/lists/{{id}}">{{title}}</a></p>
+  <p><a href="/users/{{user.id}}/lists/{{id}}">{{title}}</a></p>
   {{/each}}
 </script>

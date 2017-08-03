@@ -11,12 +11,12 @@
 </head>
 <body>
 
-<%= render 'layouts/header' %>
-<%= render 'layouts/messages' %>
+  <%= render 'layouts/header' %>
+  <%= render 'layouts/messages' %>
 
-<%= yield %>
+  <%= yield %>
 
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
 </body>
 
@@ -37,10 +37,10 @@
         <button class="statusChange" data-item="{{id}}">Buy</button>
       </div>
       <% if @list && @list.user == current_user %>
-        <div class="owner_options">
-          <br><a href="/grocery_items/{{id}}/edit">Edit Item</a>
-          <br><a href="/grocery_items/{{id}}" data-confirm="Are you sure?" data-method="delete">Delete Item</a>
-        </div>
+      <div class="owner_options">
+        <br><a href="/grocery_items/{{id}}/edit">Edit Item</a>
+        <br><a href="/grocery_items/{{id}}" data-confirm="Are you sure?" data-method="delete">Delete Item</a>
+      </div>
       <% end %>
     </li>
   </div>
@@ -67,49 +67,57 @@
 
 
 <script id="grocery-list-template" type="text/x-handlebars-template">
-  <div id="list"
-    <h1></h1>
-    <h1>{{title}}</h1>
-    <p>
-      Create By: {{user.name}}
-      List Type: {{list_type}}
-      <br>
-      <sub><a href="/users/{{user.id}}/lists/{{id}}">For full functionality, click here.</a></sub>
-    </p>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="list"
+      <h1></h1>
+      <h1>{{title}}</h1>
+      <p>
+        Create By: {{user.name}}
+        List Type: {{list_type}}
+        <br>
+        <sub><a href="/users/{{user.id}}/lists/{{id}}">For full functionality, click here.</a></sub>
+      </p>
       <button id="next_list" data-item="{{id}}">Next List</button>
 
-    <ul>
-      <div id="list_items">
-        {{#each grocery_items}}
+      <ul>
+        <div id="list_items">
+          {{#each grocery_items}}
           <!-- call the partial -->
-          {{> listItem}}
-        {{/each}}
-      </div>
-    </ul>
+            {{> listItem}}
+          {{/each}}
+        </div>
+      </ul>
+    </div>
   </div>
+</div>
 </script>
 
 <script id="chore-list-template" type="text/x-handlebars-template">
-  <div id="list"
-    <h1></h1>
-    <h1>{{title}}</h1>
-    <p>
-      Create By: {{user.name}}
-      List Type: {{list_type}}
-      <br>
-      <sub><a href="/users/{{user.id}}/lists/{{id}}">For full functionality, click here.</a></sub>
-    </p>
-    <button id="next_list" data-item="{{id}}">Next List</button>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="list"
+      <h1></h1>
+      <h1>{{title}}</h1>
+      <p>
+        Create By: {{user.name}}
+        List Type: {{list_type}}
+        <br>
+        <sub><a href="/users/{{user.id}}/lists/{{id}}">For full functionality, click here.</a></sub>
+      </p>
+      <button id="next_list" data-item="{{id}}">Next List</button>
 
-    <ul>
-      <div id="list_items">
-        {{#each chores}}
+      <ul>
+        <div id="list_items">
+          {{#each chores}}
           <!-- call the partial -->
           {{> listItem}}
-        {{/each}}
-      </div>
-    </ul>
+          {{/each}}
+        </div>
+      </ul>
+    </div>
   </div>
+</div>
 </script>
 
 <script id="chore-item-template" type="text/x-handlebars-template">

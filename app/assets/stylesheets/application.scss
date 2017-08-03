@@ -26,13 +26,18 @@ body {
     border-color: red;
 }
 
-.col-md-4 {
+.col-md-4, .col-md-6 {
   text-align: center;
+  padding-bottom: 2em;
 }
 
 .col-md-8 {
   text-align: center;
   padding: 2em;
+}
+
+.col-md-12 {
+  text-align: center;
 }
 
 .banner {
@@ -50,6 +55,9 @@ ul {
 
 .nav_bar {
   text-align: center;
+  background-color: #e3f2fd;
+  padding: 1em;
+  border-bottom: thin solid #fdeee3;
 }
 
 .nav_bar a {
