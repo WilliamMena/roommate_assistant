@@ -1,24 +1,32 @@
-<h1>All Users</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <h1>All Users</h1>
 
 
-<ul>
-<% @users.each do |u| %>
-  Name: <%= u.name %>
-  <br>
-  Email: <%= u.email %>
-  <br>
-  
-  <% if current_user.actual_roommates.include?(u) %>
-    <sub><b>Roommate</b></sub>
-  <% elsif current_user.requested.include?(u) %>
-    <sub>Requested</sub>
-  <% else %>
-    <%= form_tag '/roommates' do %>
-      <%= hidden_field_tag :roommate_id, "#{u.id}" %>
-      <%= submit_tag "Add Roommate" %>
-    <% end %>
-  <% end %>
+      <ul>
+        <% @users.each do |u| %>
+        Name: <%= u.name %>
+        <br>
+        Email: <%= u.email %>
+        <br>
 
-  <br></br>
-<% end %>
-</ul>
+        <% if current_user.actual_roommates.include?(u) %>
+        <sub><b>Roommate</b></sub>
+        <% elsif current_user.requested.include?(u) %>
+        <sub>Requested</sub>
+        <% else %>
+        <%= form_tag '/roommates' do %>
+        <%= hidden_field_tag :roommate_id, "#{u.id}" %>
+        <%= submit_tag "Add Roommate" %>
+        <% end %>
+        <% end %>
+
+        <br></br>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
+</div>

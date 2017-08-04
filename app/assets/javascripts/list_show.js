@@ -9,6 +9,15 @@ function List(list) {
   this.chores = list.chores;
 }
 
+List.prototype.renderGroceryItem = function(){
+  return List.groceryListTemplate(this)
+}
+
+List.prototype.renderChoreItem = function(){
+  return List.choreListTemplate(this)
+}
+
+
 $().ready(function() {
   attachListeners();
   // List.partialSource = $('#grocery-item-template').html();
@@ -18,15 +27,6 @@ $().ready(function() {
   List.choreListSource   = $("#chore-list-template").html();
   List.choreListTemplate = Handlebars.compile(List.choreListSource);
 })
-
-
-List.prototype.renderGroceryItem = function(){
-  return List.groceryListTemplate(this)
-}
-
-List.prototype.renderChoreItem = function(){
-  return List.choreListTemplate(this)
-}
 
 function findId(id, group) {
   for (var i=0; i < group.length; i++) {
