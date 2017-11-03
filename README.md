@@ -1,5 +1,8 @@
 # roommate_assistant
-A roommate a system that keeps track of your chores, groceries and bills. Create list's yourself and have your roommates check off on what's done.
+A roommate system that keeps track of your chores, groceries and bills. Create list's yourself and have your roommates check off on what's done.
+
+# Blog Post
+http://williammena.github.io/2017/03/18/my_rails_project_roommate_assistant/
 
 ## Getting Started
 
